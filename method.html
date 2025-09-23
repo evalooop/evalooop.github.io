@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Method - EVALOOP</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Learn about the ASL (Average Success Level) metric and EVALOOP's comprehensive evaluation methodology for LLM programming robustness">
+    <meta name="keywords" content="ASL metric, evaluation methodology, LLM testing, programming robustness">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Prism.js for code highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="assets/css/main.css" rel="stylesheet">
+    <style>
+        .method-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+        }
+        
+        .formula-box {
+            background: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .metric-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .process-step {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .process-step::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2rem;
+            height: 2rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .process-step::after {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 2.5rem;
+            width: 2px;
+            height: calc(100% + 1rem);
+            background: #e5e7eb;
+        }
+        
+        .process-step:last-child::after {
+            display: none;
+        }
+        
+        .algorithm-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        
+        .comparison-table {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table th {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .flow-diagram {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .nav-pills .nav-link {
+            color: var(--text-secondary);
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-pills .nav-link.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .nav-pills .nav-link:hover {
+            background: var(--background-alt);
+        }
+        
+        .code-example {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+        }
+        
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .process-step {
+                padding-left: 2.5rem;
+            }
+            
+            .method-header {
+                padding: 2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <span class="text-primary">EVAL</span><span class="text-secondary">OOP</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Leaderboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="method.html">Method</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="results.html">Results</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a class="nav-link btn btn-outline-primary btn-sm px-3" href="https://github.com/EvaLoop-ncsu" target="_blank">
+                            <i class="bi bi-github"></i> GitHub
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="method-header">
+        <div class="container">
+            <h1 class="display-5 fw-bold mb-3">Methodology</h1>
+            <p class="lead mb-0">
+                Understanding the ASL Metric and EVALOOP Evaluation Framework
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Navigation Pills -->
+        <ul class="nav nav-pills mb-4 justify-content-center" id="methodTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="asl-tab" data-bs-toggle="pill" data-bs-target="#asl" type="button">
+                    ASL Metric
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="framework-tab" data-bs-toggle="pill" data-bs-target="#framework" type="button">
+                    Evaluation Framework
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="algorithm-tab" data-bs-toggle="pill" data-bs-target="#algorithm" type="button">
+                    Algorithm
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="comparison-tab" data-bs-toggle="pill" data-bs-target="#comparison" type="button">
+                    Comparison
+                </button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="methodTabContent">
+            <!-- ASL Metric Tab -->
+            <div class="tab-pane fade show active" id="asl" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <h2 class="mb-4">Average number of Sustainable Loops (ASL) Metric</h2>
+                        
+                        <p class="lead mb-4">
+                            ASL (Average number of Sustainable Loops) measures LLM robustness in programming through 
+                            self-consistency evaluation using iterative code generation and summarization loops.
+                        </p>
+
+                        <div class="highlight-box">
+                            <h5 class="mb-3"><i class="bi bi-lightbulb"></i> Key Innovation</h5>
+                            <p class="mb-0">
+                                EVALOOP exploits the natural duality between complementary software engineering tasks 
+                                (code generation and code summarization) within a self-contained feedback loop, providing 
+                                a unified metric for robustness without relying on external adversarial attacks.
+                            </p>
+                        </div>
+
+                                                <h3 class="mt-5 mb-3">Definition</h3>
+                        <p>
+                            The ASL metric quantifies model robustness by measuring the average number of sustainable 
+                            loops before failure in the code generation-summarization cycle:
+                        </p>
+                        
+                        <div class="formula-box">
+                            <code>
+                                ASL = Σ(last_sustainable_loop²) / (N × max_loops)<br>
+                                <br>
+                                where:<br>
+                                - last_sustainable_loop = the last loop where the model succeeded<br>
+                                - N = total number of benchmark tasks<br>
+                                - max_loops = maximum number of loops tested (e.g., 10)<br>
+                                - Quadratic weighting (loop²) emphasizes later-loop performance
+                            </code>
+                        </div>
+
+                        <h3 class="mt-5 mb-3">Key Components</h3>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="metric-card">
+                                    <h5 class="text-primary">Code Generation</h5>
+                                    <p>LLM generates code from natural language specification</p>
+                                    <div class="metric-value">NL → Code</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="metric-card">
+                                    <h5 class="text-success">Code Summarization</h5>
+                                    <p>LLM summarizes code back to natural language</p>
+                                    <div class="metric-value">Code → NL</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="metric-card">
+                                    <h5 class="text-warning">Loop Iteration</h5>
+                                    <p>Number of sustainable transformation cycles</p>
+                                    <div class="metric-value">10+ loops</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="metric-card">
+                                    <h5 class="text-info">Pass@1 Metric</h5>
+                                    <p>Success rate at each iteration level</p>
+                                    <div class="metric-value">0-100%</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="mt-5 mb-3">EVALOOP Example</h3>
+                        <div class="code-example">
+<pre>// Example: EVALOOP process for task "check consecutive numbers" (Max 10 loops)
+Loop 1:
+  Input: "Write a function to check whether given list contains consecutive numbers"
+  Code: def check_consecutive(lst): return sorted(lst) == list(range(min(lst), max(lst)+1))
+  Pass@1: ✓ (Test passed)
+
+Loop 2:  
+  Input: "Function to determine if list forms consecutive sequence by comparing sorted to range"
+  Code: def check_consecutive(lst): return sorted(lst) == list(range(min(lst), max(lst)+1))
+  Pass@1: ✓ (Test passed)
+
+Loop 3:
+  Input: "Check if list has consecutive integers from minimum to maximum value"
+  Code: def check_consecutive(nums): return set(nums) == set(range(min(nums), max(nums)+1))
+  Pass@1: ✓ (Test passed)
+
+Loop 4:
+  Input: "Determine if list contains unbroken sequence of consecutive integers"
+  Code: def check_consecutive(lst): return set(lst) == set(range(min(lst), max(lst)+1))
+  Pass@1: ✗ (Test failed - handles duplicates incorrectly)
+
+Loops 5-10: Not reached (model failed at Loop 4)
+
+ASL contribution for this single task:
+Sustainable loops = 3 (failed at Loop 4)
+ASL = 3² / 10 = 9 / 10 = 0.9
+
+For full ASL score across N tasks:
+ASL = Σ(last_sustainable_loop²) / (N × max_loops)</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Evaluation Framework Tab -->
+            <div class="tab-pane fade" id="framework" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <h2 class="mb-4">EVALOOP Evaluation Framework</h2>
+                        
+                        <p class="lead mb-4">
+                            EVALOOP exploits the natural duality between code generation and code summarization 
+                            tasks to create a self-contained feedback loop for robustness evaluation.
+                        </p>
+
+                        <h3 class="mb-4">EVALOOP Process</h3>
+                        
+                        <div class="process-step" data-step="1">
+                            <h5>Initial Code Generation</h5>
+                            <p>Given a natural language specification, the LLM generates code solution</p>
+                        </div>
+
+                        <div class="process-step" data-step="2">
+                            <h5>Code Summarization</h5>
+                            <p>The generated code is summarized by the same LLM into a new specification</p>
+                        </div>
+
+                        <div class="process-step" data-step="3">
+                            <h5>Loop Iteration</h5>
+                            <p>Use the new specification to generate code again, creating a feedback loop</p>
+                        </div>
+
+                        <div class="process-step" data-step="4">
+                            <h5>Functional Testing</h5>
+                            <p>Test generated code against original test cases to verify correctness</p>
+                        </div>
+
+                        <div class="process-step" data-step="5">
+                            <h5>Loop Continuation</h5>
+                            <p>Continue the loop until generated code fails functional tests</p>
+                        </div>
+
+                        <div class="process-step" data-step="6">
+                            <h5>ASL Calculation</h5>
+                            <p>Compute the average number of sustainable loops before failure</p>
+                        </div>
+
+                        <h3 class="mt-5 mb-4">Evaluation Benchmark</h3>
+                        
+                        <div class="row">
+                            <div class="col-lg-10 mx-auto">
+                                <div class="card">
+                                    <div class="card-header bg-primary text-white">
+                                        <h5 class="mb-0">MBPP+ (Mostly Basic Python Problems Plus)</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="mb-3">
+                                            EVALOOP uses the MBPP+ benchmark, an enhanced version of the original MBPP dataset 
+                                            with additional test cases for more rigorous evaluation.
+                                        </p>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h6>Dataset Statistics:</h6>
+                                                <ul>
+                                                    <li>378 programming tasks</li>
+                                                    <li>Python function synthesis</li>
+                                                    <li>Natural language descriptions</li>
+                                                    <li>Multiple test assertions per task</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h6>Evaluation Setup:</h6>
+                                                <ul>
+                                                    <li>Maximum 10 loops per task</li>
+                                                    <li>Pass@1 metric at each iteration</li>
+                                                    <li>Quadratic weighting (i²) for ASL</li>
+                                                    <li>Self-contained feedback loop</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="mt-5 mb-4">Evaluation Metrics</h3>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Metric</th>
+                                        <th>Formula</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Pass@1</strong></td>
+                                        <td>Success / Total</td>
+                                        <td>Percentage of tasks passing all test cases in each loop</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Loop Count</strong></td>
+                                        <td>Max sustainable iterations</td>
+                                        <td>Number of successful transformations before failure</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ASL Score</strong></td>
+                                        <td>Σ(i² × Pass@1_i) / N</td>
+                                        <td>Weighted average emphasizing sustained performance</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Degradation Rate</strong></td>
+                                        <td>ΔPass@1 / Loops</td>
+                                        <td>Performance drop across transformation cycles</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Algorithm Tab -->
+            <div class="tab-pane fade" id="algorithm" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <h2 class="mb-4">Evaluation Algorithm</h2>
+                        
+                        <p class="lead mb-4">
+                            The EVALOOP algorithm orchestrates the entire evaluation pipeline from test generation 
+                            to final score calculation.
+                        </p>
+
+                        <h3 class="mb-3">Algorithm Pseudocode</h3>
+                        
+                        <div class="algorithm-block">
+<pre class="language-python"><code>Algorithm: EVALOOP(model, benchmark)
+────────────────────────────────────────────────
+Input:  model - LLM to evaluate
+        benchmark - Collection of programming tasks (e.g., MBPP+)
+Output: ASL - Average number of Sustainable Loops
+
+1: Initialize total_score = 0
+2: Initialize max_loops = 10
+
+3: for each task in benchmark:
+4:     loop_count = 0
+5:     current_prompt = task.description
+6:     test_cases = task.test_cases
+7:     
+8:     for i in range(1, max_loops + 1):
+9:         // Step 1: Generate code from current prompt
+10:        generated_code = model.generate_code(current_prompt)
+11:        
+12:        // Step 2: Test the generated code
+13:        test_result = execute_tests(generated_code, test_cases)
+14:        
+15:        if test_result == PASS:
+16:            loop_count = i
+17:            
+18:            // Step 3: Summarize code to create new prompt
+19:            current_prompt = model.summarize_code(generated_code)
+20:            current_prompt += "\n" + task.assertion  // Keep test assertion
+21:        else:
+22:            break  // Exit loop on first failure
+23:    
+24:    // Calculate weighted score for this task
+25:    task_score = 0
+26:    for j in range(1, loop_count + 1):
+27:        task_score += j * j  // Quadratic weighting
+28:    
+29:    total_score += task_score
+
+30: // Calculate final ASL score
+31: ASL = total_score / len(benchmark)
+
+32: return ASL</code></pre>
+                        </div>
+
+                        <h3 class="mt-5 mb-3">Key Functions</h3>
+                        
+                        <div class="accordion" id="functionsAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#func1">
+                                        generate_code(prompt)
+                                    </button>
+                                </h2>
+                                <div id="func1" class="accordion-collapse collapse show" data-bs-parent="#functionsAccordion">
+                                    <div class="accordion-body">
+                                        <code class="d-block mb-2">function generate_code(prompt: string) → string</code>
+                                        <p>Generates Python code solution from natural language specification.</p>
+                                        <ul>
+                                            <li>Takes task description as input</li>
+                                            <li>Returns complete Python function implementation</li>
+                                            <li>Maintains consistency with original test assertions</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#func2">
+                                        summarize_code(code)
+                                    </button>
+                                </h2>
+                                <div id="func2" class="accordion-collapse collapse" data-bs-parent="#functionsAccordion">
+                                    <div class="accordion-body">
+                                        <code class="d-block mb-2">function summarize_code(code: string) → string</code>
+                                        <p>Generates natural language description from Python code.</p>
+                                        <ul>
+                                            <li>Creates new task specification from code implementation</li>
+                                            <li>Preserves functional intent while varying description</li>
+                                            <li>Forms the basis for next loop iteration</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#func3">
+                                        execute_tests(code, test_cases)
+                                    </button>
+                                </h2>
+                                <div id="func3" class="accordion-collapse collapse" data-bs-parent="#functionsAccordion">
+                                    <div class="accordion-body">
+                                        <code class="d-block mb-2">function execute_tests(code: string, test_cases: array) → boolean</code>
+                                        <p>Validates generated code against original test assertions.</p>
+                                        <ul>
+                                            <li>Executes code with provided test cases</li>
+                                            <li>Returns PASS if all tests succeed</li>
+                                            <li>Returns FAIL on first test failure</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="mt-5 mb-3">Key Insights</h3>
+                        
+                        <div class="formula-box">
+                            <code>
+                                Performance Degradation: 5.01% - 19.31% drop in pass@1 within 10 loops<br>
+                                <br>
+                                Key Findings:<br>
+                                - Robustness ≠ Initial Performance<br>
+                                - Qwen2.5-Coder-32B shows superior sustained performance<br>
+                                - Different models exhibit distinct degradation patterns<br>
+                                - Quadratic weighting better captures long-term stability
+                            </code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Tab -->
+            <div class="tab-pane fade" id="comparison" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <h2 class="mb-4">Metric Comparison</h2>
+                        
+                        <p class="lead mb-4">
+                            How ASL compares to other evaluation metrics in the field.
+                        </p>
+
+                        <div class="table-responsive comparison-table">
+                            <table class="table table-striped mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Metric</th>
+                                        <th>Description</th>
+                                        <th>Advantages</th>
+                                        <th>Limitations</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>EVALOOP (Ours)</strong></td>
+                                        <td>Self-consistency evaluation through code generation-summarization loops</td>
+                                        <td>
+                                            <ul class="mb-0">
+                                                <li>No external attacks needed</li>
+                                                <li>Unified metric across models</li>
+                                                <li>Reveals true robustness patterns</li>
+                                                <li>Configuration-independent</li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul class="mb-0">
+                                                <li>Requires dual capabilities</li>
+                                                <li>Multiple API calls per task</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Pass@k</strong></td>
+                                        <td>Probability of passing with k attempts</td>
+                                        <td>
+                                            <ul class="mb-0">
+                                                <li>Simple to understand</li>
+                                                <li>Widely adopted</li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul class="mb-0">
+                                                <li>Binary pass/fail only</li>
+                                                <li>No difficulty consideration</li>
+                                                <li>Limited robustness insight</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>BLEU Score</strong></td>
+                                        <td>N-gram overlap with reference solutions</td>
+                                        <td>
+                                            <ul class="mb-0">
+                                                <li>Language agnostic</li>
+                                                <li>Fast computation</li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul class="mb-0">
+                                                <li>Doesn't test functionality</li>
+                                                <li>Style-dependent</li>
+                                                <li>Multiple valid solutions</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Adversarial Attacks</strong></td>
+                                        <td>Perturb prompts at character/word/sentence levels</td>
+                                        <td>
+                                            <ul class="mb-0">
+                                                <li>Direct robustness testing</li>
+                                                <li>Multiple attack types</li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul class="mb-0">
+                                                <li>Configuration-dependent</li>
+                                                <li>May favor certain models</li>
+                                                <li>Inconsistent results</li>
+                                                <li>External setup required</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3 class="mt-5 mb-4">Performance Correlation</h3>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <canvas id="correlationChart"></canvas>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Key Findings</h5>
+                                        <ul>
+                                            <li>EVALOOP reveals robustness independent of initial performance</li>
+                                            <li>Consistent evaluation without attack configuration bias</li>
+                                            <li>Captures degradation patterns unique to each model</li>
+                                            <li>Quadratic weighting effectively differentiates sustained performance</li>
+                                        </ul>
+                                        <div class="alert alert-info mt-3">
+                                            <i class="bi bi-info-circle"></i> 
+                                            EVALOOP identifies that robustness ≠ one-time performance
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="mt-5 mb-4">Why EVALOOP?</h3>
+                        
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="card h-100">
+                                    <div class="card-body text-center">
+                                        <i class="bi bi-arrow-repeat display-4 text-primary mb-3"></i>
+                                        <h5>Self-consistency</h5>
+                                        <p>Leverages natural duality between code generation and summarization tasks</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100">
+                                    <div class="card-body text-center">
+                                        <i class="bi bi-shield-check display-4 text-success mb-3"></i>
+                                        <h5>No External Attacks</h5>
+                                        <p>Eliminates configuration dependency and potential bias from adversarial methods</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100">
+                                    <div class="card-body text-center">
+                                        <i class="bi bi-graph-down display-4 text-warning mb-3"></i>
+                                        <h5>Degradation Patterns</h5>
+                                        <p>Reveals unique performance decay characteristics for each model</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="mb-3">EVALOOP</h5>
+                    <p class="text-muted">
+                        Advancing LLM evaluation through comprehensive robustness testing
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="mb-3">
+                        <a href="https://github.com/EvaLoop-ncsu" class="text-white me-3">
+                            <i class="bi bi-github"></i> GitHub
+                        </a>
+                        <a href="#" class="text-white me-3">
+                            <i class="bi bi-twitter"></i> Twitter
+                        </a>
+                        <a href="about.html" class="text-white">
+                            <i class="bi bi-envelope"></i> Contact
+                        </a>
+                    </div>
+                    <p class="text-muted mb-0">
+                        © 2024 EVALOOP Research Team. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/method.js"></script>
+</body>
+</html>

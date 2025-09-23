@@ -4,9 +4,18 @@ let modelsData = [];
 let charts = {};
 
 document.addEventListener('DOMContentLoaded', function() {
-    loadData();
-    initializeNavigation();
-    initializeFilters();
+    // Load header and footer first, then initialize results page
+    EVALOOP.initPageLayout().then(() => {
+        loadData();
+        initializeNavigation();
+        initializeFilters();
+    }).catch(error => {
+        console.error('Error loading page layout:', error);
+        // Continue with results page initialization even if header/footer fail
+        loadData();
+        initializeNavigation();
+        initializeFilters();
+    });
 });
 
 // Load data

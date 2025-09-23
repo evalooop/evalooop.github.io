@@ -1,9 +1,18 @@
 // EVALOOP Method Page JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
-    initializeCorrelationChart();
-    initializeCodeHighlighting();
-    initializeTabNavigation();
+    // Load header and footer first, then initialize method page
+    EVALOOP.initPageLayout().then(() => {
+        initializeCorrelationChart();
+        initializeCodeHighlighting();
+        initializeTabNavigation();
+    }).catch(error => {
+        console.error('Error loading page layout:', error);
+        // Continue with method page initialization even if header/footer fail
+        initializeCorrelationChart();
+        initializeCodeHighlighting();
+        initializeTabNavigation();
+    });
 });
 
 // Initialize correlation chart

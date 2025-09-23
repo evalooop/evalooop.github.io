@@ -2,15 +2,21 @@
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Load results data first, then initialize components
-    loadResultsData().then(() => {
+    // Load header and footer first, then other components
+    Promise.all([
+        loadHeader(),
+        loadFooter()
+    ]).then(() => {
+        // After header/footer are loaded, load results data and initialize components
+        return loadResultsData();
+    }).then(() => {
         initCounterAnimation();
         loadTopModels();
         initSmoothScroll();
         initNavbarHighlight();
     }).catch(error => {
-        console.error('Error loading results data:', error);
-        // Initialize with fallback values if data loading fails
+        console.error('Error during initialization:', error);
+        // Initialize with fallback values if loading fails
         initCounterAnimation();
         loadTopModels();
         initSmoothScroll();
@@ -20,6 +26,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Global variable to store results data
 let resultsData = null;
+
+// Load Header from includes/header.html
+async function loadHeader() {
+    try {
+        const response = await fetch('includes/header.html');
+        if (!response.ok) {
+            throw new Error('Failed to load header');
+        }
+        const headerHTML = await response.text();
+        const headerContainer = document.getElementById('header-container');
+        if (headerContainer) {
+            headerContainer.innerHTML = headerHTML;
+        }
+    } catch (error) {
+        console.error('Error loading header:', error);
+    }
+}
+
+// Load Footer from includes/footer.html
+async function loadFooter() {
+    try {
+        const response = await fetch('includes/footer.html');
+        if (!response.ok) {
+            throw new Error('Failed to load footer');
+        }
+        const footerHTML = await response.text();
+        const footerContainer = document.getElementById('footer-container');
+        if (footerContainer) {
+            footerContainer.innerHTML = footerHTML;
+        }
+    } catch (error) {
+        console.error('Error loading footer:', error);
+    }
+}
 
 // Load Results Data from JSON file
 async function loadResultsData() {
@@ -347,10 +387,24 @@ function hideLoading(element) {
     element.innerHTML = '';
 }
 
+// Initialize header and footer for any page
+function initPageLayout() {
+    return Promise.all([
+        loadHeader(),
+        loadFooter()
+    ]).then(() => {
+        initSmoothScroll();
+        initNavbarHighlight();
+    });
+}
+
 // Export functions for use in other scripts
 window.EVALOOP = {
     formatNumber,
     copyToClipboard,
     showLoading,
-    hideLoading
+    hideLoading,
+    initPageLayout,
+    loadHeader,
+    loadFooter
 };

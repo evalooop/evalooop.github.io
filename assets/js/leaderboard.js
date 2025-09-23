@@ -7,8 +7,16 @@ let categoryChart = null;
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
-    loadModelData();
-    initializeEventListeners();
+    // Load header and footer first, then initialize leaderboard
+    EVALOOP.initPageLayout().then(() => {
+        loadModelData();
+        initializeEventListeners();
+    }).catch(error => {
+        console.error('Error loading page layout:', error);
+        // Continue with leaderboard initialization even if header/footer fail
+        loadModelData();
+        initializeEventListeners();
+    });
 });
 
 // Load model data from JSON

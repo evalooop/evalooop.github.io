@@ -2,12 +2,68 @@
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all components
-    initCounterAnimation();
-    loadTopModels();
-    initSmoothScroll();
-    initNavbarHighlight();
+    // Load results data first, then initialize components
+    loadResultsData().then(() => {
+        initCounterAnimation();
+        loadTopModels();
+        initSmoothScroll();
+        initNavbarHighlight();
+    }).catch(error => {
+        console.error('Error loading results data:', error);
+        // Initialize with fallback values if data loading fails
+        initCounterAnimation();
+        loadTopModels();
+        initSmoothScroll();
+        initNavbarHighlight();
+    });
 });
+
+// Global variable to store results data
+let resultsData = null;
+
+// Load Results Data from JSON file
+async function loadResultsData() {
+    try {
+        const response = await fetch('assets/data/results.json');
+        if (!response.ok) {
+            throw new Error('Failed to load results data');
+        }
+        resultsData = await response.json();
+        
+        // Update counter values dynamically
+        updateStatsCounters();
+        
+        return resultsData;
+    } catch (error) {
+        console.error('Error loading results data:', error);
+        throw error;
+    }
+}
+
+// Update statistics counters with data from results.json
+function updateStatsCounters() {
+    if (!resultsData || !resultsData.models) {
+        return;
+    }
+    
+    const modelsCount = resultsData.models.length;
+    const highestAslScore = Math.max(...resultsData.models.map(model => model.aslScore));
+    
+    // Find counters by their associated text labels
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+        const statCard = counter.closest('.stat-card');
+        if (statCard) {
+            const label = statCard.querySelector('p').textContent.trim();
+            
+            if (label === 'Models Evaluated') {
+                counter.setAttribute('data-target', modelsCount);
+            } else if (label === 'Highest ASL Score') {
+                counter.setAttribute('data-target', highestAslScore.toFixed(3));
+            }
+        }
+    });
+}
 
 // Counter Animation for Statistics
 function initCounterAnimation() {
@@ -63,46 +119,76 @@ function initCounterAnimation() {
     });
 }
 
+// Helper function to convert rank change to trend
+function getTrendFromRankChange(rankChange) {
+    if (!rankChange || rankChange === "=") {
+        return "stable";
+    }
+    
+    const change = parseInt(rankChange.replace(/[^-\d]/g, ''));
+    if (rankChange.startsWith('+')) {
+        return "up"; // Positive rank change means moving up in the ranking
+    } else if (rankChange.startsWith('-')) {
+        return "down"; // Negative rank change means moving down in the ranking
+    }
+    
+    return "stable";
+}
+
 // Load Top Models Data
 function loadTopModels() {
-    // Updated data from EVALOOP paper - showing top 5 models
-    const topModels = [
-        {
-            rank: 1,
-            name: "o3-mini",
-            aslScore: 7.457,
-            successRate: 85.2,
-            trend: "up"
-        },
-        {
-            rank: 2,
-            name: "Qwen2.5-Coder-32B",
-            aslScore: 7.385,
-            successRate: 82.5,
-            trend: "up"
-        },
-        {
-            rank: 3,
-            name: "gpt-4.1",
-            aslScore: 7.356,
-            successRate: 84.1,
-            trend: "stable"
-        },
-        {
-            rank: 4,
-            name: "o4-mini",
-            aslScore: 7.320,
-            successRate: 83.5,
-            trend: "up"
-        },
-        {
-            rank: 5,
-            name: "gpt-4.1-mini",
-            aslScore: 7.291,
-            successRate: 82.3,
-            trend: "up"
-        }
-    ];
+    // Use data from results.json if available, otherwise fallback to hardcoded data
+    let topModels = [];
+    
+    if (resultsData && resultsData.models) {
+        // Get top 5 models from the loaded data
+        topModels = resultsData.models.slice(0, 5).map(model => ({
+            rank: model.rank,
+            name: model.name,
+            aslScore: model.aslScore,
+            successRate: model.successRate * 100, // Convert to percentage
+            trend: getTrendFromRankChange(model.rankChange)
+        }));
+    } else {
+        // Fallback data if results.json is not loaded
+        topModels = [
+            {
+                rank: 1,
+                name: "o3-mini",
+                aslScore: 7.457,
+                successRate: 85.2,
+                trend: "up"
+            },
+            {
+                rank: 2,
+                name: "Qwen2.5-Coder-32B",
+                aslScore: 7.385,
+                successRate: 82.5,
+                trend: "up"
+            },
+            {
+                rank: 3,
+                name: "gpt-4.1",
+                aslScore: 7.356,
+                successRate: 84.1,
+                trend: "stable"
+            },
+            {
+                rank: 4,
+                name: "o4-mini",
+                aslScore: 7.320,
+                successRate: 83.5,
+                trend: "up"
+            },
+            {
+                rank: 5,
+                name: "gpt-4.1-mini",
+                aslScore: 7.291,
+                successRate: 82.3,
+                trend: "up"
+            }
+        ];
+    }
     
     const tableBody = document.getElementById('topModelsTable');
     

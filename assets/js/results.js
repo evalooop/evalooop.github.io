@@ -1,6 +1,7 @@
 // EVALOOP Results Page JavaScript
 
 let modelsData = [];
+let temperatureData = [];
 let charts = {};
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -20,20 +21,74 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Load data
 async function loadData() {
-    try {
-        const response = await fetch('assets/data/models.json');
-        const data = await response.json();
-        modelsData = data.models;
-        
-        // Initialize all visualizations
-        initializeCharts();
-        populateHeatmap();
-        
-    } catch (error) {
-        console.error('Error loading data via fetch, using embedded data:', error);
-        // Use embedded data as fallback
-        loadEmbeddedData();
+    const possiblePaths = [
+        'assets/data/results.json',
+        './assets/data/results.json',
+        '/assets/data/results.json'
+    ];
+    
+    const tempPaths = [
+        'assets/data/temperature_comp.json',
+        './assets/data/temperature_comp.json',
+        '/assets/data/temperature_comp.json'
+    ];
+    
+    let dataLoaded = false;
+    let tempDataLoaded = false;
+    
+    // Load models data
+    for (const path of possiblePaths) {
+        try {
+            const response = await fetch(path);
+            if (response.ok) {
+                const data = await response.json();
+                modelsData = data.models;
+                dataLoaded = true;
+                console.log(`Successfully loaded ${modelsData.length} models from ${path}`);
+                break;
+            }
+        } catch (error) {
+            console.log(`Failed to load from ${path}:`, error.message);
+        }
     }
+    
+    // Load temperature data
+    for (const path of tempPaths) {
+        try {
+            const response = await fetch(path);
+            if (response.ok) {
+                temperatureData = await response.json();
+                tempDataLoaded = true;
+                console.log(`Successfully loaded ${temperatureData.length} temperature tasks from ${path}`);
+                break;
+            }
+        } catch (error) {
+            console.log(`Failed to load temperature data from ${path}:`, error.message);
+        }
+    }
+    
+    if (!dataLoaded) {
+        console.warn('Could not load data from any path, using embedded fallback data');
+        loadEmbeddedData();
+        return;
+    }
+    
+    if (!tempDataLoaded) {
+        console.warn('Could not load temperature data, temperature chart will not be available');
+    }
+    
+    // Update overview stats
+    updateOverviewStats();
+    
+    // Update key findings
+    updateKeyFindings();
+    
+    // Update statistics table
+    updateStatisticsTable();
+    
+    // Initialize all visualizations
+    initializeCharts();
+    populateHeatmap();
 }
 
 // Fallback embedded data
@@ -206,9 +261,168 @@ function loadEmbeddedData() {
         }
     ];
     
+    
+    // Update overview stats
+    updateOverviewStats();
+    
+    // Update key findings
+    updateKeyFindings();
+    
+    // Update statistics table
+    updateStatisticsTable();
+    
     // Initialize all visualizations
     initializeCharts();
     populateHeatmap();
+}
+
+// Update overview statistics
+function updateOverviewStats() {
+    const statBoxes = document.querySelectorAll('.stat-box');
+    if (statBoxes.length > 0 && modelsData.length > 0) {
+        // Calculate average ASL score
+        const totalASL = modelsData.reduce((sum, model) => sum + model.aslScore, 0);
+        const avgASL = totalASL / modelsData.length;
+        
+        statBoxes.forEach(box => {
+            const textElement = box.querySelector('p.text-muted');
+            if (textElement) {
+                const valueElement = box.querySelector('.stat-value');
+                if (valueElement) {
+                    // Update Models Tested count
+                    if (textElement.textContent.includes('Models Tested')) {
+                        valueElement.textContent = modelsData.length;
+                    }
+                    // Update Average ASL
+                    else if (textElement.textContent.includes('Average ASL')) {
+                        valueElement.textContent = avgASL.toFixed(1);
+                    }
+                    // Other stats like MBPP+ Tasks, Max Loops are methodology constants
+                }
+            }
+        });
+    }
+}
+
+// Update key findings section
+function updateKeyFindings() {
+    if (modelsData.length === 0) return;
+    
+    // Find the best model (rank 1)
+    const bestModel = modelsData.find(model => model.rank === 1);
+    
+    // Calculate performance drop range from drop field
+    const drops = modelsData
+        .filter(model => model.drop && !isNaN(parseFloat(model.drop)))
+        .map(model => parseFloat(model.drop));
+    
+    const minDrop = Math.min(...drops);
+    const maxDrop = Math.max(...drops);
+    
+    // Update the key findings list items
+    const findingsList = document.querySelector('.insight-card ul');
+    if (findingsList && bestModel) {
+        const listItems = findingsList.querySelectorAll('li');
+        
+        // Update first finding - best model
+        if (listItems[0]) {
+            listItems[0].textContent = `${bestModel.name} achieves the highest ASL score of ${bestModel.aslScore.toFixed(3)}`;
+        }
+        
+        // Update second finding - performance drop range
+        if (listItems[1] && drops.length > 0) {
+            listItems[1].textContent = `EVALOOP induces ${minDrop.toFixed(2)}%-${maxDrop.toFixed(2)}% absolute drop in pass@1 performance within 10 loops`;
+        }
+    }
+}
+
+// Update statistics table with calculated metrics
+function updateStatisticsTable() {
+    if (modelsData.length === 0) return;
+    
+    const tableBody = document.getElementById('statisticsTableBody');
+    if (!tableBody) return;
+    
+    // Calculate statistics for ASL Score
+    const aslScores = modelsData.map(model => model.aslScore);
+    const aslStats = calculateStatistics(aslScores);
+    
+    // Calculate statistics for Success Rate (convert to percentage)
+    const successRates = modelsData.map(model => model.successRate * 100);
+    const successStats = calculateStatistics(successRates);
+    
+    // Calculate statistics for Performance Drop
+    const performanceDrops = modelsData
+        .filter(model => model.drop && !isNaN(parseFloat(model.drop)))
+        .map(model => parseFloat(model.drop));
+    const dropStats = calculateStatistics(performanceDrops);
+    
+    // Clear existing content
+    tableBody.innerHTML = '';
+    
+    // Add ASL Score row
+    const aslRow = document.createElement('tr');
+    aslRow.innerHTML = `
+        <td>ASL Score</td>
+        <td>${aslStats.mean.toFixed(1)}</td>
+        <td>${aslStats.median.toFixed(1)}</td>
+        <td>${aslStats.stdDev.toFixed(1)}</td>
+        <td>${aslStats.min.toFixed(1)}</td>
+        <td>${aslStats.max.toFixed(1)}</td>
+    `;
+    tableBody.appendChild(aslRow);
+    
+    // Add Success Rate row
+    const successRow = document.createElement('tr');
+    successRow.innerHTML = `
+        <td>Success Rate (%)</td>
+        <td>${successStats.mean.toFixed(1)}</td>
+        <td>${successStats.median.toFixed(1)}</td>
+        <td>${successStats.stdDev.toFixed(1)}</td>
+        <td>${successStats.min.toFixed(1)}</td>
+        <td>${successStats.max.toFixed(1)}</td>
+    `;
+    tableBody.appendChild(successRow);
+    
+    // Add Performance Drop row (only if we have drop data)
+    if (performanceDrops.length > 0) {
+        const dropRow = document.createElement('tr');
+        dropRow.innerHTML = `
+            <td>Performance Drop (%)</td>
+            <td>${dropStats.mean.toFixed(2)}</td>
+            <td>${dropStats.median.toFixed(2)}</td>
+            <td>${dropStats.stdDev.toFixed(2)}</td>
+            <td>${dropStats.min.toFixed(2)}</td>
+            <td>${dropStats.max.toFixed(2)}</td>
+        `;
+        tableBody.appendChild(dropRow);
+    }
+}
+
+// Helper function to calculate statistics
+function calculateStatistics(values) {
+    if (values.length === 0) return { mean: 0, median: 0, stdDev: 0, min: 0, max: 0 };
+    
+    // Sort values for median calculation
+    const sorted = [...values].sort((a, b) => a - b);
+    
+    // Calculate mean
+    const mean = values.reduce((sum, val) => sum + val, 0) / values.length;
+    
+    // Calculate median
+    const median = sorted.length % 2 === 0
+        ? (sorted[sorted.length / 2 - 1] + sorted[sorted.length / 2]) / 2
+        : sorted[Math.floor(sorted.length / 2)];
+    
+    // Calculate standard deviation
+    const variance = values.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / values.length;
+    const stdDev = Math.sqrt(variance);
+    
+    // Min and max
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+    
+    return { mean, median, stdDev, min, max };
 }
 
 // Initialize smooth scroll navigation
@@ -353,7 +567,7 @@ function initializeCharts() {
     const scatterCtx = document.getElementById('scatterChart');
     if (scatterCtx) {
         const scatterData = modelsData.map(m => ({
-            x: m.successRate,
+            x: m.successRate * 100, // Convert decimal to percentage
             y: m.aslScore,
             label: m.name
         }));
@@ -390,61 +604,173 @@ function initializeCharts() {
                             display: true,
                             text: 'Success Rate (%)'
                         },
-                        min: 60,
-                        max: 100
+                        min: 20,
+                        max: 90
                     },
                     y: {
                         title: {
                             display: true,
                             text: 'ASL Score'
                         },
-                        min: 60,
-                        max: 100
+                        min: 0,
+                        max: 8
                     }
                 }
             }
         });
     }
     
-    // Execution Time Chart
+    // Temperature Analysis Chart
     const timeCtx = document.getElementById('timeChart');
-    if (timeCtx) {
-        const top10 = modelsData.slice(0, 10);
+    if (timeCtx && temperatureData.length > 0) {
+        // Sort tasks by greedy values (like in logic.py)
+        const sortedData = [...temperatureData].sort((a, b) => a.greedy - b.greedy);
+        
+        // Calculate averages for the lines
+        const greedyAvg = temperatureData.reduce((sum, d) => sum + d.greedy, 0) / temperatureData.length;
+        const tempAvg = temperatureData.reduce((sum, d) => sum + d.temperature, 0) / temperatureData.length;
+        
+        // Take a sample of tasks for better visibility (e.g., every 5th task or max 50 tasks)
+        const sampleSize = Math.min(50, sortedData.length);
+        const step = Math.max(1, Math.floor(sortedData.length / sampleSize));
+        const sampledData = sortedData.filter((_, index) => index % step === 0);
         
         charts.time = new Chart(timeCtx, {
-            type: 'line',
+            type: 'bar',
             data: {
-                labels: top10.map(m => m.name),
-                datasets: [{
-                    label: 'Average Time (s)',
-                    data: top10.map(m => m.avgTime),
-                    borderColor: 'rgba(16, 185, 129, 1)',
-                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                    tension: 0.4
-                }]
+                labels: sampledData.map(d => d.task_id),
+                datasets: [
+                    {
+                        label: 'Greedy',
+                        data: sampledData.map(d => d.greedy),
+                        backgroundColor: 'rgba(248, 161, 154, 0.7)', // Light red/pink with transparency
+                        borderColor: '#F8A19A',
+                        borderWidth: 0,
+                        type: 'bar',
+                        order: 2,
+                        barPercentage: 1.0,
+                        categoryPercentage: 0.8
+                    },
+                    {
+                        label: 'Temperature',
+                        data: sampledData.map(d => d.temperature),
+                        backgroundColor: '#C75246', // Darker red as in logic.py
+                        borderColor: '#C75246',
+                        borderWidth: 0,
+                        type: 'bar',
+                        order: 1,
+                        barPercentage: 1.0,
+                        categoryPercentage: 0.8
+                    },
+                    {
+                        label: `Greedy Avg: ${greedyAvg.toFixed(2)}`,
+                        data: Array(sampledData.length).fill(greedyAvg),
+                        type: 'line',
+                        borderColor: '#F8A19A',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        backgroundColor: 'transparent',
+                        pointRadius: 0,
+                        tension: 0
+                    },
+                    {
+                        label: `Temperature Avg: ${tempAvg.toFixed(2)}`,
+                        data: Array(sampledData.length).fill(tempAvg),
+                        type: 'line',
+                        borderColor: '#C75246',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        backgroundColor: 'transparent',
+                        pointRadius: 0,
+                        tension: 0
+                    }
+                ]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        display: false
+                        display: true,
+                        position: 'top'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.dataset.label}: ${context.raw.toFixed(2)}`;
+                            }
+                        }
+                    }
+                },
+                elements: {
+                    bar: {
+                        categoryPercentage: 0.8,
+                        barPercentage: 1.0
                     }
                 },
                 scales: {
                     x: {
-                        display: false
+                        title: {
+                            display: true,
+                            text: 'Tasks (Sorted by Greedy Pass Rate)'
+                        },
+                        ticks: {
+                            display: false // Hide task IDs as they would be too crowded
+                        },
+                        stacked: false,
+                        offset: false,
+                        grid: {
+                            offset: false
+                        }
                     },
                     y: {
                         title: {
                             display: true,
-                            text: 'Time (seconds)'
+                            text: 'Average Sustainable Loops'
                         },
-                        beginAtZero: true
+                        beginAtZero: true,
+                        max: 10,
+                        stacked: false
                     }
+                },
+                plugins: [{
+                    id: 'overlappingBars',
+                    beforeDatasetsDraw: function(chart) {
+                        // Custom plugin to force overlapping bars
+                        const meta0 = chart.getDatasetMeta(0);
+                        const meta1 = chart.getDatasetMeta(1);
+                        
+                        if (meta0 && meta1) {
+                            // Force both datasets to use the same x positions
+                            meta1.data.forEach((bar, index) => {
+                                if (meta0.data[index]) {
+                                    bar.x = meta0.data[index].x;
+                                }
+                            });
+                        }
+                    }
+                }, {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.dataset.label}: ${context.raw.toFixed(2)}`;
+                            }
+                        }
+                    }
+                }],
+                interaction: {
+                    mode: 'index',
+                    intersect: false
                 }
             }
         });
+    } else if (timeCtx) {
+        // Show message if temperature data is not available
+        timeCtx.getContext('2d').fillText('Temperature data not available', 10, 30);
     }
     
     // Category Comparison Chart
@@ -507,28 +833,88 @@ function initializeCharts() {
         const orgData = aggregateByOrganization();
         
         charts.orgTrends = new Chart(orgCtx, {
-            type: 'radar',
+            type: 'bar',
             data: {
-                labels: ['ASL Score', 'Success Rate', 'Speed', 'Robustness'],
-                datasets: orgData.map((org, index) => ({
-                    label: org.name,
-                    data: [
-                        org.avgASL,
-                        org.avgSuccess,
-                        100 - (org.avgTime * 50), // Convert time to speed score
-                        org.avgRobustness
-                    ],
-                    borderColor: getColor(index),
-                    backgroundColor: getColor(index, 0.2)
-                }))
+                labels: orgData.map(org => org.name),
+                datasets: [
+                    {
+                        label: 'ASL Score',
+                        data: orgData.map(org => org.avgASL),
+                        backgroundColor: 'rgba(37, 99, 235, 0.8)',
+                        borderColor: 'rgba(37, 99, 235, 1)',
+                        borderWidth: 1,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: 'Success Rate (%)',
+                        data: orgData.map(org => org.avgSuccess * 100),
+                        backgroundColor: 'rgba(16, 185, 129, 0.8)',
+                        borderColor: 'rgba(16, 185, 129, 1)',
+                        borderWidth: 1,
+                        yAxisID: 'y1'
+                    }
+                ]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.dataset.label;
+                                const value = context.raw;
+                                if (label === 'ASL Score') {
+                                    return `${label}: ${value.toFixed(2)}`;
+                                } else {
+                                    return `${label}: ${value.toFixed(1)}%`;
+                                }
+                            }
+                        }
+                    }
+                },
                 scales: {
-                    r: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Organization'
+                        }
+                    },
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
                         beginAtZero: true,
-                        max: 100
+                        title: {
+                            display: true,
+                            text: 'ASL Score'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return value.toFixed(1);
+                            }
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Pass Rate (%)'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return value.toFixed(1) + '%';
+                            }
+                        },
+                        grid: {
+                            drawOnChartArea: false,
+                        }
                     }
                 }
             }
@@ -592,6 +978,74 @@ function initializeCharts() {
             }
         });
     }
+    
+    // Model Size vs ASL Chart
+    const modelSizeCtx = document.getElementById('modelSizeChart');
+    if (modelSizeCtx) {
+        // Filter models that have size data (exclude null values)
+        const modelsWithSize = modelsData.filter(m => m.size !== null && m.size !== undefined);
+        
+        // Convert size to number and create scatter data
+        const scatterData = modelsWithSize.map(m => ({
+            x: parseFloat(m.size),
+            y: m.aslScore,
+            label: m.name,
+            organization: m.organization
+        }));
+        
+        charts.modelSize = new Chart(modelSizeCtx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Models',
+                    data: scatterData,
+                    backgroundColor: 'rgba(37, 99, 235, 0.6)',
+                    borderColor: 'rgba(37, 99, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const point = context.raw;
+                                return `${point.label}: ${point.x}B params, ASL ${point.y.toFixed(1)}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'logarithmic',
+                        title: {
+                            display: true,
+                            text: 'Model Size (Billion Parameters)'
+                        },
+                        min: 1,
+                        ticks: {
+                            callback: function(value) {
+                                return value.toFixed(1) + 'B';
+                            }
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'ASL Score'
+                        },
+                        min: 0,
+                        max: 8
+                    }
+                }
+            }
+        });
+    }
 }
 
 // Populate heatmap table
@@ -643,19 +1097,20 @@ function populateHeatmap() {
 
 // Helper function to create histogram bins
 function createHistogramBins(data, numBins) {
-    const min = Math.min(...data);
-    const max = Math.max(...data);
-    const binWidth = (max - min) / numBins;
+    // Create integer-based bins (1-2, 2-3, 3-4, etc.)
+    const min = Math.floor(Math.min(...data));
+    const max = Math.ceil(Math.max(...data));
     
     const bins = {
         labels: [],
         counts: []
     };
     
-    for (let i = 0; i < numBins; i++) {
-        const start = min + i * binWidth;
-        const end = start + binWidth;
-        bins.labels.push(`${start.toFixed(0)}-${end.toFixed(0)}`);
+    // Create bins from min to max with integer boundaries
+    for (let i = min; i < max; i++) {
+        const start = i;
+        const end = i + 1;
+        bins.labels.push(`${start}-${end}`);
         bins.counts.push(data.filter(d => d >= start && d < end).length);
     }
     

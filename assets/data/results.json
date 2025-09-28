@@ -9,7 +9,9 @@
             "successRate": 0.81,
             "aslScore": 7.786,
             "rankChange": "+2",
-            "model_id": "claude-opus-4"
+            "drop": "3.17",
+            "model_id": "claude-opus-4",
+            "size": null
         },
         {
             "rank": 2,
@@ -19,7 +21,9 @@
             "successRate": 0.793,
             "aslScore": 7.689,
             "rankChange": "+6",
-            "model_id": "qwen3-235b-a22b-instruct-2507"
+            "drop": "2.65",
+            "model_id": "qwen3-235b-a22b-instruct-2507",
+            "size": "235"
         },
         {
             "rank": 3,
@@ -29,7 +33,9 @@
             "successRate": 0.786,
             "aslScore": 7.599,
             "rankChange": "+6",
-            "model_id": "qwen3-coder-480b-a35b-instruct"
+            "drop": "2.65",
+            "model_id": "qwen3-coder-480b-a35b-instruct",
+            "size": "480"
         },
         {
             "rank": 4,
@@ -39,7 +45,9 @@
             "successRate": 0.783,
             "aslScore": 7.518,
             "rankChange": "+6",
-            "model_id": "claude-sonnet-4"
+            "drop": "3.17",
+            "model_id": "claude-sonnet-4",
+            "size": null
         },
         {
             "rank": 5,
@@ -49,7 +57,9 @@
             "successRate": 0.804,
             "aslScore": 7.481,
             "rankChange": "+1",
-            "model_id": "deepseek-v3"
+            "drop": "6.08",
+            "model_id": "deepseek-v3",
+            "size": "685"
         },
         {
             "rank": 6,
@@ -59,7 +69,9 @@
             "successRate": 0.81,
             "aslScore": 7.456,
             "rankChange": "-2",
-            "model_id": "o3-mini"
+            "drop": "7.670000000000001",
+            "model_id": "o3-mini",
+            "size": null
         },
         {
             "rank": 7,
@@ -69,7 +81,9 @@
             "successRate": 0.802,
             "aslScore": 7.383,
             "rankChange": "=",
-            "model_id": "o3"
+            "drop": "8.200000000000001",
+            "model_id": "o3",
+            "size": null
         },
         {
             "rank": 8,
@@ -79,7 +93,9 @@
             "successRate": 0.775,
             "aslScore": 7.355,
             "rankChange": "+4",
-            "model_id": "gpt-4.1"
+            "drop": "4.2299999999999995",
+            "model_id": "gpt-4.1",
+            "size": null
         },
         {
             "rank": 9,
@@ -89,7 +105,9 @@
             "successRate": 0.815,
             "aslScore": 7.317,
             "rankChange": "-8",
-            "model_id": "o4-mini"
+            "drop": "10.05",
+            "model_id": "o4-mini",
+            "size": null
         },
         {
             "rank": 10,
@@ -99,7 +117,9 @@
             "successRate": 0.778,
             "aslScore": 7.29,
             "rankChange": "+1",
-            "model_id": "gpt-4.1-mini"
+            "drop": "5.029999999999999",
+            "model_id": "gpt-4.1-mini",
+            "size": null
         },
         {
             "rank": 11,
@@ -109,7 +129,9 @@
             "successRate": 0.812,
             "aslScore": 7.285,
             "rankChange": "-9",
-            "model_id": "o1"
+            "drop": "10.05",
+            "model_id": "o1",
+            "size": null
         },
         {
             "rank": 12,
@@ -119,7 +141,9 @@
             "successRate": 0.81,
             "aslScore": 7.254,
             "rankChange": "-7",
-            "model_id": "o1-mini"
+            "drop": "10.58",
+            "model_id": "o1-mini",
+            "size": null
         },
         {
             "rank": 13,
@@ -129,7 +153,9 @@
             "successRate": 0.765,
             "aslScore": 7.253,
             "rankChange": "+6",
-            "model_id": "qwen2.5-coder-32b-instruct"
+            "drop": "3.9699999999999998",
+            "model_id": "qwen2.5-coder-32b-instruct",
+            "size": "32"
         },
         {
             "rank": 14,
@@ -139,7 +165,9 @@
             "successRate": 0.772,
             "aslScore": 7.178,
             "rankChange": "+1",
-            "model_id": "gemini-2.5-flash-lite"
+            "drop": "5.56",
+            "model_id": "gemini-2.5-flash-lite",
+            "size": null
         },
         {
             "rank": 15,
@@ -149,7 +177,9 @@
             "successRate": 0.751,
             "aslScore": 7.124,
             "rankChange": "+11",
-            "model_id": "qwen3-30b-a3b-instruct-2507"
+            "drop": "3.9699999999999998",
+            "model_id": "qwen3-30b-a3b-instruct-2507",
+            "size": "30.5"
         },
         {
             "rank": 16,
@@ -159,7 +189,9 @@
             "successRate": 0.767,
             "aslScore": 7.097,
             "rankChange": "+1",
-            "model_id": "claude-haiku-3.5"
+            "drop": "6.08",
+            "model_id": "claude-haiku-3.5",
+            "size": null
         },
         {
             "rank": 17,
@@ -169,7 +201,9 @@
             "successRate": 0.765,
             "aslScore": 7.07,
             "rankChange": "+3",
-            "model_id": "deepseek-coder-v2-instruct"
+            "drop": "6.08",
+            "model_id": "deepseek-coder-v2-instruct",
+            "size": "236"
         },
         {
             "rank": 18,
@@ -179,7 +213,9 @@
             "successRate": 0.772,
             "aslScore": 7.041,
             "rankChange": "-2",
-            "model_id": "gemini-2.0-flash"
+            "drop": "7.140000000000001",
+            "model_id": "gemini-2.0-flash",
+            "size": null
         },
         {
             "rank": 19,
@@ -189,7 +225,9 @@
             "successRate": 0.759,
             "aslScore": 7.039,
             "rankChange": "+4",
-            "model_id": "gpt-4o"
+            "drop": "5.82",
+            "model_id": "gpt-4o",
+            "size": null
         },
         {
             "rank": 20,
@@ -199,7 +237,9 @@
             "successRate": 0.765,
             "aslScore": 6.945,
             "rankChange": "+1",
-            "model_id": "deepseek-v2.5"
+            "drop": "7.140000000000001",
+            "model_id": "deepseek-v2.5",
+            "size": "236"
         },
         {
             "rank": 21,
@@ -209,7 +249,9 @@
             "successRate": 0.775,
             "aslScore": 6.922,
             "rankChange": "-8",
-            "model_id": "llama-4-maverick-17b-128e-instruct"
+            "drop": "9.520000000000001",
+            "model_id": "llama-4-maverick-17b-128e-instruct",
+            "size": "402"
         },
         {
             "rank": 22,
@@ -219,7 +261,9 @@
             "successRate": 0.767,
             "aslScore": 6.922,
             "rankChange": "-4",
-            "model_id": "gemini-2.5-flash"
+            "drop": "8.469999999999999",
+            "model_id": "gemini-2.5-flash",
+            "size": null
         },
         {
             "rank": 23,
@@ -229,7 +273,9 @@
             "successRate": 0.746,
             "aslScore": 6.905,
             "rankChange": "+4",
-            "model_id": "gemma-3-27b-it"
+            "drop": "5.82",
+            "model_id": "gemma-3-27b-it",
+            "size": "27.4"
         },
         {
             "rank": 24,
@@ -239,7 +285,9 @@
             "successRate": 0.775,
             "aslScore": 6.842,
             "rankChange": "-10",
-            "model_id": "gemini-2.5-pro"
+            "drop": "10.32",
+            "model_id": "gemini-2.5-pro",
+            "size": null
         },
         {
             "rank": 25,
@@ -249,7 +297,9 @@
             "successRate": 0.722,
             "aslScore": 6.839,
             "rankChange": "+12",
-            "model_id": "gemma-3-12b-it"
+            "drop": "3.9699999999999998",
+            "model_id": "gemma-3-12b-it",
+            "size": "12.2"
         },
         {
             "rank": 26,
@@ -259,7 +309,9 @@
             "successRate": 0.741,
             "aslScore": 6.82,
             "rankChange": "+2",
-            "model_id": "gpt-4-turbo"
+            "drop": "6.61",
+            "model_id": "gpt-4-turbo",
+            "size": null
         },
         {
             "rank": 27,
@@ -269,7 +321,9 @@
             "successRate": 0.728,
             "aslScore": 6.809,
             "rankChange": "+6",
-            "model_id": "glm-4.5-air"
+            "drop": "4.760000000000001",
+            "model_id": "glm-4.5-air",
+            "size": "110"
         },
         {
             "rank": 28,
@@ -279,7 +333,9 @@
             "successRate": 0.722,
             "aslScore": 6.787,
             "rankChange": "+10",
-            "model_id": "llama-3.1-405b-instruct"
+            "drop": "4.5",
+            "model_id": "llama-3.1-405b-instruct",
+            "size": "406"
         },
         {
             "rank": 29,
@@ -289,7 +345,9 @@
             "successRate": 0.738,
             "aslScore": 6.775,
             "rankChange": "=",
-            "model_id": "gemini-2.0-flash-lite"
+            "drop": "6.35",
+            "model_id": "gemini-2.0-flash-lite",
+            "size": null
         },
         {
             "rank": 30,
@@ -299,7 +357,9 @@
             "successRate": 0.733,
             "aslScore": 6.676,
             "rankChange": "=",
-            "model_id": "qwen2.5-coder-14b-instruct"
+            "drop": "6.61",
+            "model_id": "qwen2.5-coder-14b-instruct",
+            "size": "32"
         },
         {
             "rank": 31,
@@ -309,7 +369,9 @@
             "successRate": 0.765,
             "aslScore": 6.669,
             "rankChange": "-9",
-            "model_id": "qwen3-coder-30b-a3b-instruct"
+            "drop": "10.05",
+            "model_id": "qwen3-coder-30b-a3b-instruct",
+            "size": "30.5"
         },
         {
             "rank": 32,
@@ -319,7 +381,9 @@
             "successRate": 0.754,
             "aslScore": 6.61,
             "rankChange": "-8",
-            "model_id": "nextcoder-32b"
+            "drop": "9.790000000000001",
+            "model_id": "nextcoder-32b",
+            "size": "32"
         },
         {
             "rank": 33,
@@ -329,7 +393,9 @@
             "successRate": 0.725,
             "aslScore": 6.52,
             "rankChange": "+1",
-            "model_id": "nextcoder-14b"
+            "drop": "7.41",
+            "model_id": "nextcoder-14b",
+            "size": "32"
         },
         {
             "rank": 34,
@@ -339,7 +405,9 @@
             "successRate": 0.714,
             "aslScore": 6.517,
             "rankChange": "+10",
-            "model_id": "llama-3.3-70b-instruct"
+            "drop": "6.35",
+            "model_id": "llama-3.3-70b-instruct",
+            "size": "70.6"
         },
         {
             "rank": 35,
@@ -349,7 +417,9 @@
             "successRate": 0.701,
             "aslScore": 6.49,
             "rankChange": "+12",
-            "model_id": "opencoder-8b-instruct"
+            "drop": "5.29",
+            "model_id": "opencoder-8b-instruct",
+            "size": "7.77"
         },
         {
             "rank": 36,
@@ -359,7 +429,9 @@
             "successRate": 0.73,
             "aslScore": 6.452,
             "rankChange": "-5",
-            "model_id": "seed-coder-8b-instruct"
+            "drop": "8.73",
+            "model_id": "seed-coder-8b-instruct",
+            "size": "8.25"
         },
         {
             "rank": 37,
@@ -369,7 +441,9 @@
             "successRate": 0.714,
             "aslScore": 6.422,
             "rankChange": "+8",
-            "model_id": "mistral-large-instruct-2407"
+            "drop": "7.41",
+            "model_id": "mistral-large-instruct-2407",
+            "size": "123"
         },
         {
             "rank": 38,
@@ -379,7 +453,9 @@
             "successRate": 0.698,
             "aslScore": 6.41,
             "rankChange": "+11",
-            "model_id": "codeqwen1.5-7b-chat"
+            "drop": "5.82",
+            "model_id": "codeqwen1.5-7b-chat",
+            "size": "7.25"
         },
         {
             "rank": 39,
@@ -389,7 +465,9 @@
             "successRate": 0.713,
             "aslScore": 6.377,
             "rankChange": "+7",
-            "model_id": "deepseek-coder-v2-lite-instruct"
+            "drop": "8.200000000000001",
+            "model_id": "deepseek-coder-v2-lite-instruct",
+            "size": "236"
         },
         {
             "rank": 40,
@@ -399,7 +477,9 @@
             "successRate": 0.717,
             "aslScore": 6.34,
             "rankChange": "=",
-            "model_id": "qwen2.5-coder-7b-instruct"
+            "drop": "8.469999999999999",
+            "model_id": "qwen2.5-coder-7b-instruct",
+            "size": "32"
         },
         {
             "rank": 41,
@@ -409,7 +489,9 @@
             "successRate": 0.717,
             "aslScore": 6.295,
             "rankChange": "=",
-            "model_id": "hermes-3-llama-3.1-405b"
+            "drop": "9.26",
+            "model_id": "hermes-3-llama-3.1-405b",
+            "size": "406"
         },
         {
             "rank": 42,
@@ -419,7 +501,9 @@
             "successRate": 0.72,
             "aslScore": 6.279,
             "rankChange": "-3",
-            "model_id": "gemma-3n-e4b-it"
+            "drop": "11.110000000000001",
+            "model_id": "gemma-3n-e4b-it",
+            "size": "4"
         },
         {
             "rank": 43,
@@ -429,7 +513,9 @@
             "successRate": 0.701,
             "aslScore": 6.257,
             "rankChange": "+5",
-            "model_id": "gpt-3.5-turbo"
+            "drop": "7.9399999999999995",
+            "model_id": "gpt-3.5-turbo",
+            "size": null
         },
         {
             "rank": 44,
@@ -439,7 +525,9 @@
             "successRate": 0.754,
             "aslScore": 6.226,
             "rankChange": "-19",
-            "model_id": "glm-4.5"
+            "drop": "15.079999999999998",
+            "model_id": "glm-4.5",
+            "size": "358"
         },
         {
             "rank": 45,
@@ -449,7 +537,9 @@
             "successRate": 0.688,
             "aslScore": 6.198,
             "rankChange": "+8",
-            "model_id": "glm-4-9b-0414"
+            "drop": "6.88",
+            "model_id": "glm-4-9b-0414",
+            "size": "32"
         },
         {
             "rank": 46,
@@ -459,7 +549,9 @@
             "successRate": 0.717,
             "aslScore": 6.177,
             "rankChange": "-4",
-            "model_id": "ling-lite-1.5"
+            "drop": "10.05",
+            "model_id": "ling-lite-1.5",
+            "size": "16.8"
         },
         {
             "rank": 47,
@@ -469,7 +561,9 @@
             "successRate": 0.677,
             "aslScore": 6.15,
             "rankChange": "+9",
-            "model_id": "pixtral-large-instruct-2411"
+            "drop": "6.35",
+            "model_id": "pixtral-large-instruct-2411",
+            "size": "124"
         },
         {
             "rank": 48,
@@ -479,7 +573,9 @@
             "successRate": 0.725,
             "aslScore": 6.137,
             "rankChange": "-13",
-            "model_id": "minicpm4-8b"
+            "drop": "11.379999999999999",
+            "model_id": "minicpm4-8b",
+            "size": "8"
         },
         {
             "rank": 49,
@@ -489,7 +585,9 @@
             "successRate": 0.693,
             "aslScore": 6.029,
             "rankChange": "+1",
-            "model_id": "mistral-small-3.2-24b-instruct-2506"
+            "drop": "9.26",
+            "model_id": "mistral-small-3.2-24b-instruct-2506",
+            "size": "24"
         },
         {
             "rank": 50,
@@ -499,7 +597,9 @@
             "successRate": 0.717,
             "aslScore": 6.023,
             "rankChange": "-7",
-            "model_id": "llama-3.1-70b-instruct"
+            "drop": "11.64",
+            "model_id": "llama-3.1-70b-instruct",
+            "size": "70.6"
         },
         {
             "rank": 51,
@@ -509,7 +609,9 @@
             "successRate": 0.667,
             "aslScore": 6.017,
             "rankChange": "+9",
-            "model_id": "meta-llama-3-70b-instruct"
+            "drop": "6.61",
+            "model_id": "meta-llama-3-70b-instruct",
+            "size": "70"
         },
         {
             "rank": 52,
@@ -519,7 +621,9 @@
             "successRate": 0.669,
             "aslScore": 5.986,
             "rankChange": "+7",
-            "model_id": "qwen3-4b-instruct-2507"
+            "drop": "7.41",
+            "model_id": "qwen3-4b-instruct-2507",
+            "size": "4.02"
         },
         {
             "rank": 53,
@@ -529,7 +633,9 @@
             "successRate": 0.685,
             "aslScore": 5.983,
             "rankChange": "+1",
-            "model_id": "hermes-3-llama-3.1-70b"
+            "drop": "9.26",
+            "model_id": "hermes-3-llama-3.1-70b",
+            "size": "70.6"
         },
         {
             "rank": 54,
@@ -539,7 +645,9 @@
             "successRate": 0.661,
             "aslScore": 5.946,
             "rankChange": "+7",
-            "model_id": "qwen2.5-coder-3b-instruct"
+            "drop": "6.88",
+            "model_id": "qwen2.5-coder-3b-instruct",
+            "size": "32"
         },
         {
             "rank": 55,
@@ -549,7 +657,9 @@
             "successRate": 0.675,
             "aslScore": 5.937,
             "rankChange": "+2",
-            "model_id": "mistral-small-3.1-24b-instruct-2503"
+            "drop": "8.200000000000001",
+            "model_id": "mistral-small-3.1-24b-instruct-2503",
+            "size": "24"
         },
         {
             "rank": 56,
@@ -559,7 +669,9 @@
             "successRate": 0.69,
             "aslScore": 5.854,
             "rankChange": "-4",
-            "model_id": "deepseek-v2-chat"
+            "drop": "11.379999999999999",
+            "model_id": "deepseek-v2-chat",
+            "size": "236"
         },
         {
             "rank": 57,
@@ -569,7 +681,9 @@
             "successRate": 0.73,
             "aslScore": 5.827,
             "rankChange": "-25",
-            "model_id": "baichuan-m2-32b"
+            "drop": "15.61",
+            "model_id": "baichuan-m2-32b",
+            "size": "32.8"
         },
         {
             "rank": 58,
@@ -579,7 +693,9 @@
             "successRate": 0.693,
             "aslScore": 5.767,
             "rankChange": "-7",
-            "model_id": "deepseek-coder-33b-instruct"
+            "drop": "11.899999999999999",
+            "model_id": "deepseek-coder-33b-instruct",
+            "size": "33.3"
         },
         {
             "rank": 59,
@@ -589,7 +705,9 @@
             "successRate": 0.648,
             "aslScore": 5.766,
             "rankChange": "+4",
-            "model_id": "gemma-3-4b-it"
+            "drop": "7.41",
+            "model_id": "gemma-3-4b-it",
+            "size": "4.3"
         },
         {
             "rank": 60,
@@ -599,7 +717,9 @@
             "successRate": 0.632,
             "aslScore": 5.7,
             "rankChange": "+7",
-            "model_id": "mistral-small-instruct-2409"
+            "drop": "6.35",
+            "model_id": "mistral-small-instruct-2409",
+            "size": "22"
         },
         {
             "rank": 61,
@@ -609,7 +729,9 @@
             "successRate": 0.638,
             "aslScore": 5.575,
             "rankChange": "+5",
-            "model_id": "mixtral-8x22b-instruct-v0.1"
+            "drop": "8.469999999999999",
+            "model_id": "mixtral-8x22b-instruct-v0.1",
+            "size": "141"
         },
         {
             "rank": 62,
@@ -619,7 +741,9 @@
             "successRate": 0.606,
             "aslScore": 5.443,
             "rankChange": "+10",
-            "model_id": "codestral-22b-v0.1"
+            "drop": "6.35",
+            "model_id": "codestral-22b-v0.1",
+            "size": "22.2"
         },
         {
             "rank": 63,
@@ -629,7 +753,9 @@
             "successRate": 0.643,
             "aslScore": 5.423,
             "rankChange": "+1",
-            "model_id": "deepseek-coder-7b-instruct-v1.5"
+            "drop": "11.64",
+            "model_id": "deepseek-coder-7b-instruct-v1.5",
+            "size": "6.91"
         },
         {
             "rank": 64,
@@ -639,7 +765,9 @@
             "successRate": 0.593,
             "aslScore": 5.319,
             "rankChange": "+11",
-            "model_id": "qwen2.5-coder-1.5b-instruct"
+            "drop": "6.61",
+            "model_id": "qwen2.5-coder-1.5b-instruct",
+            "size": "32"
         },
         {
             "rank": 65,
@@ -649,7 +777,9 @@
             "successRate": 0.725,
             "aslScore": 5.224,
             "rankChange": "-29",
-            "model_id": "llama-4-scout-17b-16e-instruct"
+            "drop": "23.02",
+            "model_id": "llama-4-scout-17b-16e-instruct",
+            "size": "109"
         },
         {
             "rank": 66,
@@ -659,7 +789,9 @@
             "successRate": 0.653,
             "aslScore": 5.051,
             "rankChange": "-4",
-            "model_id": "gemma-3n-e2b-it"
+            "drop": "16.669999999999998",
+            "model_id": "gemma-3n-e2b-it",
+            "size": "4"
         },
         {
             "rank": 67,
@@ -669,7 +801,9 @@
             "successRate": 0.683,
             "aslScore": 4.897,
             "rankChange": "-12",
-            "model_id": "phi-4-reasoning"
+            "drop": "19.580000000000002",
+            "model_id": "phi-4-reasoning",
+            "size": "14"
         },
         {
             "rank": 68,
@@ -679,7 +813,9 @@
             "successRate": 0.561,
             "aslScore": 4.844,
             "rankChange": "+11",
-            "model_id": "ministral-8b-instruct-2410"
+            "drop": "7.9399999999999995",
+            "model_id": "ministral-8b-instruct-2410",
+            "size": "8.02"
         },
         {
             "rank": 69,
@@ -689,7 +825,9 @@
             "successRate": 0.561,
             "aslScore": 4.743,
             "rankChange": "+11",
-            "model_id": "lfm-7b"
+            "drop": "9.520000000000001",
+            "model_id": "lfm-7b",
+            "size": null
         },
         {
             "rank": 70,
@@ -699,7 +837,9 @@
             "successRate": 0.616,
             "aslScore": 4.713,
             "rankChange": "+1",
-            "model_id": "phi-3.5-moe-instruct"
+            "drop": "15.61",
+            "model_id": "phi-3.5-moe-instruct",
+            "size": "3.8"
         },
         {
             "rank": 71,
@@ -709,7 +849,9 @@
             "successRate": 0.524,
             "aslScore": 4.706,
             "rankChange": "+12",
-            "model_id": "phi-3.5-mini-instruct"
+            "drop": "5.82",
+            "model_id": "phi-3.5-mini-instruct",
+            "size": "3.8"
         },
         {
             "rank": 72,
@@ -719,7 +861,9 @@
             "successRate": 0.566,
             "aslScore": 4.687,
             "rankChange": "+6",
-            "model_id": "mixtral-8x7b-instruct-v0.1"
+            "drop": "10.05",
+            "model_id": "mixtral-8x7b-instruct-v0.1",
+            "size": "46.7"
         },
         {
             "rank": 73,
@@ -729,7 +873,9 @@
             "successRate": 0.556,
             "aslScore": 4.521,
             "rankChange": "+8",
-            "model_id": "ling-plus"
+            "drop": "11.64",
+            "model_id": "ling-plus",
+            "size": "16.8"
         },
         {
             "rank": 74,
@@ -739,7 +885,9 @@
             "successRate": 0.545,
             "aslScore": 4.446,
             "rankChange": "+8",
-            "model_id": "hermes-3-llama-3.1-8b"
+            "drop": "12.43",
+            "model_id": "hermes-3-llama-3.1-8b",
+            "size": "8.03"
         },
         {
             "rank": 75,
@@ -749,7 +897,9 @@
             "successRate": 0.571,
             "aslScore": 4.31,
             "rankChange": "+2",
-            "model_id": "meta-llama-3-8b-instruct"
+            "drop": "14.549999999999999",
+            "model_id": "meta-llama-3-8b-instruct",
+            "size": "70"
         },
         {
             "rank": 76,
@@ -759,7 +909,9 @@
             "successRate": 0.489,
             "aslScore": 4.008,
             "rankChange": "+10",
-            "model_id": "phi-4-mini-instruct"
+            "drop": "9.26",
+            "model_id": "phi-4-mini-instruct",
+            "size": "3.8"
         },
         {
             "rank": 77,
@@ -769,7 +921,9 @@
             "successRate": 0.624,
             "aslScore": 3.933,
             "rankChange": "-9",
-            "model_id": "qwen3-235b-a22b"
+            "drop": "29.099999999999998",
+            "model_id": "qwen3-235b-a22b",
+            "size": "235"
         },
         {
             "rank": 78,
@@ -779,7 +933,9 @@
             "successRate": 0.397,
             "aslScore": 3.424,
             "rankChange": "+11",
-            "model_id": "qwen2.5-coder-0.5b-instruct"
+            "drop": "5.56",
+            "model_id": "qwen2.5-coder-0.5b-instruct",
+            "size": "32"
         },
         {
             "rank": 79,
@@ -789,7 +945,9 @@
             "successRate": 0.513,
             "aslScore": 3.28,
             "rankChange": "+5",
-            "model_id": "deepseek-v2-lite-chat"
+            "drop": "20.369999999999997",
+            "model_id": "deepseek-v2-lite-chat",
+            "size": "15.7"
         },
         {
             "rank": 80,
@@ -799,7 +957,9 @@
             "successRate": 0.624,
             "aslScore": 3.181,
             "rankChange": "-11",
-            "model_id": "moonlight-16b-a3b-instruct"
+            "drop": "34.660000000000004",
+            "model_id": "moonlight-16b-a3b-instruct",
+            "size": "16"
         },
         {
             "rank": 81,
@@ -809,7 +969,9 @@
             "successRate": 0.423,
             "aslScore": 3.129,
             "rankChange": "+7",
-            "model_id": "mistral-7b-instruct-v0.3"
+            "drop": "11.379999999999999",
+            "model_id": "mistral-7b-instruct-v0.3",
+            "size": "7.25"
         },
         {
             "rank": 82,
@@ -819,7 +981,9 @@
             "successRate": 0.675,
             "aslScore": 3.123,
             "rankChange": "-24",
-            "model_id": "nextcoder-7b"
+            "drop": "37.04",
+            "model_id": "nextcoder-7b",
+            "size": "32"
         },
         {
             "rank": 83,
@@ -829,7 +993,9 @@
             "successRate": 0.468,
             "aslScore": 3.106,
             "rankChange": "+4",
-            "model_id": "seed-coder-8b-reasoning"
+            "drop": "18.52",
+            "model_id": "seed-coder-8b-reasoning",
+            "size": "8.25"
         },
         {
             "rank": 84,
@@ -839,7 +1005,9 @@
             "successRate": 0.603,
             "aslScore": 3.012,
             "rankChange": "-11",
-            "model_id": "phi-3-mini-4k-instruct"
+            "drop": "32.800000000000004",
+            "model_id": "phi-3-mini-4k-instruct",
+            "size": "3.8"
         },
         {
             "rank": 85,
@@ -849,7 +1017,9 @@
             "successRate": 0.386,
             "aslScore": 2.895,
             "rankChange": "+6",
-            "model_id": "mistral-7b-instruct-v0.2"
+            "drop": "10.05",
+            "model_id": "mistral-7b-instruct-v0.2",
+            "size": "7.24"
         },
         {
             "rank": 86,
@@ -859,7 +1029,9 @@
             "successRate": 0.586,
             "aslScore": 2.64,
             "rankChange": "-10",
-            "model_id": "llama-3.1-8b-instruct"
+            "drop": "37.57",
+            "model_id": "llama-3.1-8b-instruct",
+            "size": "8.03"
         },
         {
             "rank": 87,
@@ -869,7 +1041,9 @@
             "successRate": 0.624,
             "aslScore": 2.373,
             "rankChange": "-17",
-            "model_id": "deepseek-r1-distill-llama-70b"
+            "drop": "43.919999999999995",
+            "model_id": "deepseek-r1-distill-llama-70b",
+            "size": "70.6"
         },
         {
             "rank": 88,
@@ -879,7 +1053,9 @@
             "successRate": 0.365,
             "aslScore": 2.368,
             "rankChange": "+4",
-            "model_id": "phi-3-medium-4k-instruct"
+            "drop": "13.23",
+            "model_id": "phi-3-medium-4k-instruct",
+            "size": "14"
         },
         {
             "rank": 89,
@@ -889,7 +1065,9 @@
             "successRate": 0.603,
             "aslScore": 2.352,
             "rankChange": "-15",
-            "model_id": "opencoder-1.5b-instruct"
+            "drop": "39.95",
+            "model_id": "opencoder-1.5b-instruct",
+            "size": "1.91"
         },
         {
             "rank": 90,
@@ -899,7 +1077,9 @@
             "successRate": 0.397,
             "aslScore": 2.092,
             "rankChange": "=",
-            "model_id": "qwen3-4b-thinking-2507"
+            "drop": "21.16",
+            "model_id": "qwen3-4b-thinking-2507",
+            "size": "4.02"
         },
         {
             "rank": 91,
@@ -909,7 +1089,9 @@
             "successRate": 0.643,
             "aslScore": 1.959,
             "rankChange": "-26",
-            "model_id": "glm-4-32b-0414"
+            "drop": "47.620000000000005",
+            "model_id": "glm-4-32b-0414",
+            "size": "32"
         },
         {
             "rank": 92,
@@ -919,7 +1101,9 @@
             "successRate": 0.505,
             "aslScore": 1.847,
             "rankChange": "-7",
-            "model_id": "jan-v1-4b"
+            "drop": "36.77",
+            "model_id": "jan-v1-4b",
+            "size": "4.02"
         },
         {
             "rank": 93,
@@ -929,7 +1113,9 @@
             "successRate": 0.291,
             "aslScore": 1.636,
             "rankChange": "=",
-            "model_id": "qwen3-1.7b"
+            "drop": "14.02",
+            "model_id": "qwen3-1.7b",
+            "size": "2.03"
         },
         {
             "rank": 94,
@@ -939,7 +1125,9 @@
             "successRate": 0.283,
             "aslScore": 1.571,
             "rankChange": "+1",
-            "model_id": "claude-haiku-3"
+            "drop": "12.959999999999999",
+            "model_id": "claude-haiku-3",
+            "size": null
         },
         {
             "rank": 95,
@@ -949,7 +1137,9 @@
             "successRate": 0.291,
             "aslScore": 1.34,
             "rankChange": "-1",
-            "model_id": "deepseek-coder-1.3b-instruct"
+            "drop": "17.2",
+            "model_id": "deepseek-coder-1.3b-instruct",
+            "size": "1.35"
         },
         {
             "rank": 96,
@@ -959,7 +1149,9 @@
             "successRate": 0.267,
             "aslScore": 1.107,
             "rankChange": "=",
-            "model_id": "deepseek-coder-6.7b-instruct"
+            "drop": "16.400000000000002",
+            "model_id": "deepseek-coder-6.7b-instruct",
+            "size": "6.74"
         }
     ]
 }

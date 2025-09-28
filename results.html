@@ -206,13 +206,7 @@
                     <a class="nav-link" href="#performance">Performance Analysis</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#category">Category Breakdown</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="#trends">Trends & Insights</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#download">Download Data</a>
                 </li>
             </ul>
         </div>
@@ -245,9 +239,9 @@
                 </div>
                 <div class="col-md-3 col-6">
                     <div class="stat-box text-center">
-                        <i class="bi bi-graph-down display-4 text-info mb-3"></i>
-                        <div class="stat-value">5-19%</div>
-                        <p class="text-muted mb-0">Performance Drop</p>
+                        <i class="bi bi-bar-chart display-4 text-info mb-3"></i>
+                        <div class="stat-value">0.0</div>
+                        <p class="text-muted mb-0">Average ASL</p>
                     </div>
                 </div>
             </div>
@@ -256,9 +250,9 @@
             <div class="insight-card">
                 <h4><i class="bi bi-lightbulb"></i> Key Findings</h4>
                 <ul class="mb-0">
-                    <li>o3-mini achieves the highest ASL score of 7.457 using quadratic weighting</li>
+                    <li>o3-mini achieves the highest ASL score of 7.457</li>
                     <li>EVALOOP induces 5.01%-19.31% absolute drop in pass@1 performance within 10 loops</li>
-                    <li>Qwen2.5-Coder-32B shows superior robustness despite lower initial performance than OpenAI models</li>
+                    <li>Qwen3-235B-A22B-Instruct-2507 shows superior robustness despite lower initial performance than OpenAI models</li>
                     <li>Robustness doesn't always align with initial performance, revealing deeper model characteristics</li>
                 </ul>
             </div>
@@ -287,91 +281,19 @@
                 </div>
                 <div class="col-md-6">
                     <div class="chart-card">
-                        <h5 class="mb-3">Execution Time Analysis</h5>
-                        <div class="small-chart-container">
-                            <canvas id="timeChart"></canvas>
+                        <h5 class="mb-3">Model Size vs Performance</h5>
+                        <div class="small-chart-container d-flex justify-content-center align-items-center">
+                            <canvas id="modelSizeChart" width="400" height="300"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Category Breakdown Section -->
-        <section id="category" class="mb-5">
-            <h2 class="mb-4">Category Breakdown</h2>
-            
-            <!-- Filter Tags -->
-            <div class="filter-tags">
-                <span class="filter-tag active" data-category="all">All Categories</span>
-                <span class="filter-tag" data-category="algorithms">Algorithms</span>
-                <span class="filter-tag" data-category="datastructures">Data Structures</span>
-                <span class="filter-tag" data-category="systemdesign">System Design</span>
-                <span class="filter-tag" data-category="debugging">Debugging</span>
-            </div>
-
-            <!-- Category Performance Grid -->
-            <div class="performance-grid" id="categoryGrid">
-                <div class="performance-item">
-                    <h5>Algorithms</h5>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="display-6 fw-bold text-primary">88.5%</span>
-                        <i class="bi bi-graph-up text-success fs-3"></i>
+            <div class="col-md-12">
+                <div class="chart-card">
+                    <h5 class="mb-3">Temperature Analysis</h5>
+                    <div class="small-chart-container d-flex justify-content-center align-items-center">
+                        <img src="assets/data/greedy_vs_temperature.png" alt="Greedy vs Temperature Analysis" class="img-fluid">
                     </div>
-                    <p class="text-muted mb-0">Average Success Rate</p>
-                </div>
-                <div class="performance-item">
-                    <h5>Data Structures</h5>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="display-6 fw-bold text-primary">86.2%</span>
-                        <i class="bi bi-diagram-3 text-info fs-3"></i>
-                    </div>
-                    <p class="text-muted mb-0">Average Success Rate</p>
-                </div>
-                <div class="performance-item">
-                    <h5>System Design</h5>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="display-6 fw-bold text-primary">82.7%</span>
-                        <i class="bi bi-cpu text-warning fs-3"></i>
-                    </div>
-                    <p class="text-muted mb-0">Average Success Rate</p>
-                </div>
-                <div class="performance-item">
-                    <h5>Debugging</h5>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="display-6 fw-bold text-primary">85.3%</span>
-                        <i class="bi bi-bug text-danger fs-3"></i>
-                    </div>
-                    <p class="text-muted mb-0">Average Success Rate</p>
-                </div>
-            </div>
-
-            <!-- Category Comparison Chart -->
-            <div class="chart-card">
-                <h5 class="mb-3">Top Models Performance by Category</h5>
-                <div class="chart-container">
-                    <canvas id="categoryComparisonChart"></canvas>
-                </div>
-            </div>
-
-            <!-- Heatmap -->
-            <div class="data-table-wrapper">
-                <h5 class="mb-3">Performance Heatmap</h5>
-                <div class="comparison-matrix">
-                    <table class="table table-bordered mb-0">
-                        <thead>
-                            <tr>
-                                <th>Model</th>
-                                <th>Algorithms</th>
-                                <th>Data Structures</th>
-                                <th>System Design</th>
-                                <th>Debugging</th>
-                                <th>Overall ASL</th>
-                            </tr>
-                        </thead>
-                        <tbody id="heatmapTable">
-                            <!-- Data will be populated by JavaScript -->
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </section>
@@ -381,22 +303,22 @@
             <h2 class="mb-4">Trends & Insights</h2>
             
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="chart-card">
-                        <h5 class="mb-3">Performance Trends by Organization</h5>
+                        <h5 class="mb-3">Performance by Organization</h5>
                         <div class="small-chart-container">
                             <canvas id="orgTrendsChart"></canvas>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                     <div class="chart-card">
                         <h5 class="mb-3">Model Size vs Performance</h5>
                         <div class="small-chart-container">
                             <canvas id="sizePerformanceChart"></canvas>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <!-- Statistical Analysis -->
@@ -414,117 +336,13 @@
                                 <th>Max</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>ASL Score</td>
-                                <td>76.8</td>
-                                <td>78.2</td>
-                                <td>8.4</td>
-                                <td>58.3</td>
-                                <td>92.3</td>
-                            </tr>
-                            <tr>
-                                <td>Success Rate (%)</td>
-                                <td>79.4</td>
-                                <td>80.6</td>
-                                <td>9.1</td>
-                                <td>61.2</td>
-                                <td>94.7</td>
-                            </tr>
-                            <tr>
-                                <td>Avg Time (s)</td>
-                                <td>1.32</td>
-                                <td>1.28</td>
-                                <td>0.24</td>
-                                <td>0.87</td>
-                                <td>1.98</td>
-                            </tr>
-                            <tr>
-                                <td>Robustness Score</td>
-                                <td>74.5</td>
-                                <td>75.8</td>
-                                <td>8.7</td>
-                                <td>56.2</td>
-                                <td>89.5</td>
-                            </tr>
+                        <tbody id="statisticsTableBody">
+                            <!-- Data will be populated by JavaScript -->
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- Insights -->
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <i class="bi bi-arrow-up-circle text-success"></i> Strengths
-                            </h5>
-                            <ul class="mb-0">
-                                <li>Strong performance on standard algorithms</li>
-                                <li>Excellent code syntax accuracy</li>
-                                <li>Good handling of common patterns</li>
-                                <li>Fast execution times for simple tasks</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <i class="bi bi-exclamation-triangle text-warning"></i> Areas for Improvement
-                            </h5>
-                            <ul class="mb-0">
-                                <li>Edge case handling needs refinement</li>
-                                <li>Complex system design challenges</li>
-                                <li>Memory optimization in large datasets</li>
-                                <li>Debugging of subtle logical errors</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Download Section -->
-        <section id="download" class="download-section">
-            <h2 class="mb-4">Download Data</h2>
-            <p class="lead mb-4">
-                Access the complete dataset and detailed results from our evaluation
-            </p>
-            
-            <div class="row g-3">
-                <div class="col-md-3 col-6">
-                    <button class="btn btn-primary w-100" onclick="downloadData('full')">
-                        <i class="bi bi-download"></i> Full Dataset
-                        <small class="d-block">JSON (2.3 MB)</small>
-                    </button>
-                </div>
-                <div class="col-md-3 col-6">
-                    <button class="btn btn-outline-primary w-100" onclick="downloadData('summary')">
-                        <i class="bi bi-file-earmark-csv"></i> Summary CSV
-                        <small class="d-block">CSV (156 KB)</small>
-                    </button>
-                </div>
-                <div class="col-md-3 col-6">
-                    <button class="btn btn-outline-primary w-100" onclick="downloadData('detailed')">
-                        <i class="bi bi-file-earmark-spreadsheet"></i> Detailed Results
-                        <small class="d-block">XLSX (892 KB)</small>
-                    </button>
-                </div>
-                <div class="col-md-3 col-6">
-                    <button class="btn btn-outline-primary w-100" onclick="downloadData('plots')">
-                        <i class="bi bi-images"></i> Plots & Figures
-                        <small class="d-block">ZIP (4.7 MB)</small>
-                    </button>
-                </div>
-            </div>
-            
-            <div class="alert alert-info mt-4">
-                <i class="bi bi-info-circle"></i>
-                All data is provided under the MIT License. Please cite our paper when using these results.
-            </div>
         </section>
     </div>
 

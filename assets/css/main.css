@@ -660,6 +660,43 @@ html {
     }
 }
 
+/* Team Member Styles */
+.member-affiliation {
+    margin-bottom: 0.1rem !important;
+    font-size: 1.1rem !important;
+}
+
+.member-affiliation:last-of-type {
+    margin-bottom: 1rem !important;
+}
+
+.member-name {
+    font-size: 1.5rem !important;
+}
+
+.member-role {
+    font-size: 1.1rem !important;
+}
+
+.member-links {
+    margin-top: 1rem;
+}
+
+.member-links a {
+    font-size: 1.5rem !important;
+    margin-right: 1rem;
+    color: var(--primary-color);
+    transition: color 0.2s ease;
+}
+
+.member-links a:hover {
+    color: var(--secondary-color);
+}
+
+.member-links i {
+    font-size: 1.5rem !important;
+}
+
 /* Print Styles */
 @media print {
     .navbar,

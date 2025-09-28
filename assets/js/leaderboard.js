@@ -163,15 +163,15 @@ function getRankChange(model) {
     
     if (rankChangeStr.startsWith('+')) {
         const change = rankChangeStr.substring(1);
-        return `<span class="rank-change rank-up" title="Up ${change} positions">↗${change}</span>`;
+        return `<span class="rank-change rank-up" title="Rank up ${change} positions compared to pass rate rank">↗${change}</span>`;
     } else if (rankChangeStr.startsWith('-')) {
         const change = rankChangeStr.substring(1);
-        return `<span class="rank-change rank-down" title="Down ${change} positions">↘${change}</span>`;
+        return `<span class="rank-change rank-down" title="Rank down ${change} positions compared to pass rate rank">↘${change}</span>`;
     } else if (rankChangeStr === '=') {
-        return `<span class="rank-change rank-stable" title="No change">—</span>`;
+        return `<span class="rank-change rank-stable" title="Rank no change compared to pass rate rank">—</span>`;
     } else {
         // Handle cases without + or - prefix (assume positive)
-        return `<span class="rank-change rank-up" title="Up ${rankChangeStr} positions">↗${rankChangeStr}</span>`;
+        return `<span class="rank-change rank-up" title="Rank up ${rankChangeStr} positions compared to pass rate rank">↗${rankChangeStr}</span>`;
     }
 }
 

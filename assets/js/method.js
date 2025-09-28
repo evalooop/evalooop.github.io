@@ -20,12 +20,12 @@ function initializeCorrelationChart() {
     const ctx = document.getElementById('correlationChart');
     if (!ctx) return;
     
-    // Sample correlation data
+    // Correlation data based on EVALOOP paper findings
     const correlationData = {
-        labels: ['ASL', 'Pass@1', 'Pass@10', 'BLEU', 'HumanEval'],
+        labels: ['EVALOOP (ASL)', 'Pass@1', 'SWE-bench', 'Adversarial Attacks', 'BLEU Score'],
         datasets: [{
-            label: 'Correlation with Human Evaluation',
-            data: [0.87, 0.72, 0.75, 0.45, 0.68],
+            label: 'Correlation with Agent Performance',
+            data: [0.89, 0.64, 0.586, 0.42, 0.38],
             backgroundColor: [
                 'rgba(37, 99, 235, 0.8)',
                 'rgba(16, 185, 129, 0.8)',
@@ -57,13 +57,13 @@ function initializeCorrelationChart() {
                 tooltip: {
                     callbacks: {
                         label: function(context) {
-                            return `Correlation: ${context.raw.toFixed(2)}`;
+                            return `Correlation: ${context.raw.toFixed(3)}`;
                         }
                     }
                 },
                 title: {
                     display: true,
-                    text: 'Metric Correlation with Human Evaluation',
+                    text: 'Robustness Metric Correlation with Real-World Agent Performance',
                     font: {
                         size: 16,
                         weight: 'bold'

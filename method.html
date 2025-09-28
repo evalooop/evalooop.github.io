@@ -18,6 +18,9 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <!-- Prism.js for code highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <!-- MathJax for mathematical formulas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Custom CSS -->
     <link href="assets/css/main.css" rel="stylesheet">
     <style>
@@ -37,6 +40,30 @@
             font-family: 'JetBrains Mono', monospace;
         }
         
+        .math-formula {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 6px;
+        }
+        
+        .formula-description {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+        }
+        
+        .formula-description ul {
+            margin: 0.5rem 0 0 0;
+            padding-left: 1.2rem;
+        }
+        
+        .formula-description li {
+            margin-bottom: 0.3rem;
+            line-height: 1.5;
+        }
+        
         .metric-card {
             background: white;
             border: 1px solid #e5e7eb;
@@ -44,11 +71,14 @@
             padding: 1.5rem;
             height: 100%;
             transition: all 0.3s ease;
+            position: relative;
         }
         
         .metric-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: scale(1.05);
+            transform-origin: center center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            z-index: 10;
         }
         
         .process-step {
@@ -172,41 +202,8 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">
-                <span class="text-primary">EVAL</span><span class="text-secondary">OOP</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="home.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Leaderboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="method.html">Method</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="results.html">Results</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item ms-2">
-                        <a class="nav-link btn btn-outline-primary btn-sm px-3" href="https://github.com/EvaLoop-ncsu" target="_blank">
-                            <i class="bi bi-github"></i> GitHub
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Header Container - Content will be loaded dynamically -->
+    <div id="header-container"></div>
 
     <!-- Header -->
     <div class="method-header">
@@ -223,137 +220,26 @@
         <!-- Navigation Pills -->
         <ul class="nav nav-pills mb-4 justify-content-center" id="methodTabs" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="asl-tab" data-bs-toggle="pill" data-bs-target="#asl" type="button">
-                    ASL Metric
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="framework-tab" data-bs-toggle="pill" data-bs-target="#framework" type="button">
+                <button class="nav-link active" id="framework-tab" data-bs-toggle="pill" data-bs-target="#framework" type="button">
                     Evaluation Framework
                 </button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="algorithm-tab" data-bs-toggle="pill" data-bs-target="#algorithm" type="button">
-                    Algorithm
+                <button class="nav-link" id="asl-tab" data-bs-toggle="pill" data-bs-target="#asl" type="button">
+                    ASL Metric
                 </button>
             </li>
-            <li class="nav-item" role="presentation">
+            <!-- <li class="nav-item" role="presentation">
                 <button class="nav-link" id="comparison-tab" data-bs-toggle="pill" data-bs-target="#comparison" type="button">
                     Comparison
                 </button>
-            </li>
+            </li> -->
         </ul>
 
         <!-- Tab Content -->
         <div class="tab-content" id="methodTabContent">
-            <!-- ASL Metric Tab -->
-            <div class="tab-pane fade show active" id="asl" role="tabpanel">
-                <div class="row">
-                    <div class="col-lg-8 mx-auto">
-                        <h2 class="mb-4">Average number of Sustainable Loops (ASL) Metric</h2>
-                        
-                        <p class="lead mb-4">
-                            ASL (Average number of Sustainable Loops) measures LLM robustness in programming through 
-                            self-consistency evaluation using iterative code generation and summarization loops.
-                        </p>
-
-                        <div class="highlight-box">
-                            <h5 class="mb-3"><i class="bi bi-lightbulb"></i> Key Innovation</h5>
-                            <p class="mb-0">
-                                EVALOOP exploits the natural duality between complementary software engineering tasks 
-                                (code generation and code summarization) within a self-contained feedback loop, providing 
-                                a unified metric for robustness without relying on external adversarial attacks.
-                            </p>
-                        </div>
-
-                                                <h3 class="mt-5 mb-3">Definition</h3>
-                        <p>
-                            The ASL metric quantifies model robustness by measuring the average number of sustainable 
-                            loops before failure in the code generation-summarization cycle:
-                        </p>
-                        
-                        <div class="formula-box">
-                            <code>
-                                ASL = Σ(last_sustainable_loop²) / (N × max_loops)<br>
-                                <br>
-                                where:<br>
-                                - last_sustainable_loop = the last loop where the model succeeded<br>
-                                - N = total number of benchmark tasks<br>
-                                - max_loops = maximum number of loops tested (e.g., 10)<br>
-                                - Quadratic weighting (loop²) emphasizes later-loop performance
-                            </code>
-                        </div>
-
-                        <h3 class="mt-5 mb-3">Key Components</h3>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="metric-card">
-                                    <h5 class="text-primary">Code Generation</h5>
-                                    <p>LLM generates code from natural language specification</p>
-                                    <div class="metric-value">NL → Code</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="metric-card">
-                                    <h5 class="text-success">Code Summarization</h5>
-                                    <p>LLM summarizes code back to natural language</p>
-                                    <div class="metric-value">Code → NL</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="metric-card">
-                                    <h5 class="text-warning">Loop Iteration</h5>
-                                    <p>Number of sustainable transformation cycles</p>
-                                    <div class="metric-value">10+ loops</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="metric-card">
-                                    <h5 class="text-info">Pass@1 Metric</h5>
-                                    <p>Success rate at each iteration level</p>
-                                    <div class="metric-value">0-100%</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <h3 class="mt-5 mb-3">EVALOOP Example</h3>
-                        <div class="code-example">
-<pre>// Example: EVALOOP process for task "check consecutive numbers" (Max 10 loops)
-Loop 1:
-  Input: "Write a function to check whether given list contains consecutive numbers"
-  Code: def check_consecutive(lst): return sorted(lst) == list(range(min(lst), max(lst)+1))
-  Pass@1: ✓ (Test passed)
-
-Loop 2:  
-  Input: "Function to determine if list forms consecutive sequence by comparing sorted to range"
-  Code: def check_consecutive(lst): return sorted(lst) == list(range(min(lst), max(lst)+1))
-  Pass@1: ✓ (Test passed)
-
-Loop 3:
-  Input: "Check if list has consecutive integers from minimum to maximum value"
-  Code: def check_consecutive(nums): return set(nums) == set(range(min(nums), max(nums)+1))
-  Pass@1: ✓ (Test passed)
-
-Loop 4:
-  Input: "Determine if list contains unbroken sequence of consecutive integers"
-  Code: def check_consecutive(lst): return set(lst) == set(range(min(lst), max(lst)+1))
-  Pass@1: ✗ (Test failed - handles duplicates incorrectly)
-
-Loops 5-10: Not reached (model failed at Loop 4)
-
-ASL contribution for this single task:
-Sustainable loops = 3 (failed at Loop 4)
-ASL = 3² / 10 = 9 / 10 = 0.9
-
-For full ASL score across N tasks:
-ASL = Σ(last_sustainable_loop²) / (N × max_loops)</pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Evaluation Framework Tab -->
-            <div class="tab-pane fade" id="framework" role="tabpanel">
+            <div class="tab-pane fade show active" id="framework" role="tabpanel">
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
                         <h2 class="mb-4">EVALOOP Evaluation Framework</h2>
@@ -405,8 +291,8 @@ ASL = Σ(last_sustainable_loop²) / (N × max_loops)</pre>
                                     </div>
                                     <div class="card-body">
                                         <p class="mb-3">
-                                            EVALOOP uses the MBPP+ benchmark, an enhanced version of the original MBPP dataset 
-                                            with additional test cases for more rigorous evaluation.
+                                            EVALOOP uses the MBPP+ benchmark, an enhanced version that applies rigorous quality 
+                                            filtering and expands the test case corpus by 35-fold compared to the original MBPP dataset.
                                         </p>
                                         <div class="row">
                                             <div class="col-md-6">
@@ -415,7 +301,8 @@ ASL = Σ(last_sustainable_loop²) / (N × max_loops)</pre>
                                                     <li>378 programming tasks</li>
                                                     <li>Python function synthesis</li>
                                                     <li>Natural language descriptions</li>
-                                                    <li>Multiple test assertions per task</li>
+                                                    <li>35x more test assertions vs. original MBPP</li>
+                                                    <li>Rigorous quality filtering applied</li>
                                                 </ul>
                                             </div>
                                             <div class="col-md-6">
@@ -424,7 +311,8 @@ ASL = Σ(last_sustainable_loop²) / (N × max_loops)</pre>
                                                     <li>Maximum 10 loops per task</li>
                                                     <li>Pass@1 metric at each iteration</li>
                                                     <li>Quadratic weighting (i²) for ASL</li>
-                                                    <li>Self-contained feedback loop</li>
+                                                    <li>GPT-4-turbo for similarity evaluation</li>
+                                                    <li>Greedy decoding (temperature=0.0)</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -432,183 +320,245 @@ ASL = Σ(last_sustainable_loop²) / (N × max_loops)</pre>
                                 </div>
                             </div>
                         </div>
-
-                        <h3 class="mt-5 mb-4">Evaluation Metrics</h3>
-                        
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Metric</th>
-                                        <th>Formula</th>
-                                        <th>Description</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><strong>Pass@1</strong></td>
-                                        <td>Success / Total</td>
-                                        <td>Percentage of tasks passing all test cases in each loop</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Loop Count</strong></td>
-                                        <td>Max sustainable iterations</td>
-                                        <td>Number of successful transformations before failure</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>ASL Score</strong></td>
-                                        <td>Σ(i² × Pass@1_i) / N</td>
-                                        <td>Weighted average emphasizing sustained performance</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Degradation Rate</strong></td>
-                                        <td>ΔPass@1 / Loops</td>
-                                        <td>Performance drop across transformation cycles</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Algorithm Tab -->
-            <div class="tab-pane fade" id="algorithm" role="tabpanel">
+            <!-- ASL Metric Tab -->
+            <div class="tab-pane fade" id="asl" role="tabpanel">
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
-                        <h2 class="mb-4">Evaluation Algorithm</h2>
+                        <h2 class="mb-4">Average Sustainable Loops (ASL) Metric</h2>
                         
                         <p class="lead mb-4">
-                            The EVALOOP algorithm orchestrates the entire evaluation pipeline from test generation 
-                            to final score calculation.
+                            ASL (Average Sustainable Loops) measures LLM robustness in programming through 
+                            self-consistency evaluation using iterative code generation and summarization loops.
                         </p>
 
-                        <h3 class="mb-3">Algorithm Pseudocode</h3>
-                        
-                        <div class="algorithm-block">
-<pre class="language-python"><code>Algorithm: EVALOOP(model, benchmark)
-────────────────────────────────────────────────
-Input:  model - LLM to evaluate
-        benchmark - Collection of programming tasks (e.g., MBPP+)
-Output: ASL - Average number of Sustainable Loops
-
-1: Initialize total_score = 0
-2: Initialize max_loops = 10
-
-3: for each task in benchmark:
-4:     loop_count = 0
-5:     current_prompt = task.description
-6:     test_cases = task.test_cases
-7:     
-8:     for i in range(1, max_loops + 1):
-9:         // Step 1: Generate code from current prompt
-10:        generated_code = model.generate_code(current_prompt)
-11:        
-12:        // Step 2: Test the generated code
-13:        test_result = execute_tests(generated_code, test_cases)
-14:        
-15:        if test_result == PASS:
-16:            loop_count = i
-17:            
-18:            // Step 3: Summarize code to create new prompt
-19:            current_prompt = model.summarize_code(generated_code)
-20:            current_prompt += "\n" + task.assertion  // Keep test assertion
-21:        else:
-22:            break  // Exit loop on first failure
-23:    
-24:    // Calculate weighted score for this task
-25:    task_score = 0
-26:    for j in range(1, loop_count + 1):
-27:        task_score += j * j  // Quadratic weighting
-28:    
-29:    total_score += task_score
-
-30: // Calculate final ASL score
-31: ASL = total_score / len(benchmark)
-
-32: return ASL</code></pre>
+                        <div class="highlight-box">
+                            <h5 class="mb-3"><i class="bi bi-lightbulb"></i> Key Innovation</h5>
+                            <p class="mb-0">
+                                EVALOOP exploits the natural duality between complementary software engineering tasks 
+                                (code generation and code summarization) within a self-contained feedback loop, providing 
+                                a unified metric for robustness without relying on external adversarial attacks.
+                            </p>
                         </div>
 
-                        <h3 class="mt-5 mb-3">Key Functions</h3>
-                        
-                        <div class="accordion" id="functionsAccordion">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#func1">
-                                        generate_code(prompt)
-                                    </button>
-                                </h2>
-                                <div id="func1" class="accordion-collapse collapse show" data-bs-parent="#functionsAccordion">
-                                    <div class="accordion-body">
-                                        <code class="d-block mb-2">function generate_code(prompt: string) → string</code>
-                                        <p>Generates Python code solution from natural language specification.</p>
-                                        <ul>
-                                            <li>Takes task description as input</li>
-                                            <li>Returns complete Python function implementation</li>
-                                            <li>Maintains consistency with original test assertions</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#func2">
-                                        summarize_code(code)
-                                    </button>
-                                </h2>
-                                <div id="func2" class="accordion-collapse collapse" data-bs-parent="#functionsAccordion">
-                                    <div class="accordion-body">
-                                        <code class="d-block mb-2">function summarize_code(code: string) → string</code>
-                                        <p>Generates natural language description from Python code.</p>
-                                        <ul>
-                                            <li>Creates new task specification from code implementation</li>
-                                            <li>Preserves functional intent while varying description</li>
-                                            <li>Forms the basis for next loop iteration</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#func3">
-                                        execute_tests(code, test_cases)
-                                    </button>
-                                </h2>
-                                <div id="func3" class="accordion-collapse collapse" data-bs-parent="#functionsAccordion">
-                                    <div class="accordion-body">
-                                        <code class="d-block mb-2">function execute_tests(code: string, test_cases: array) → boolean</code>
-                                        <p>Validates generated code against original test assertions.</p>
-                                        <ul>
-                                            <li>Executes code with provided test cases</li>
-                                            <li>Returns PASS if all tests succeed</li>
-                                            <li>Returns FAIL on first test failure</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <h3 class="mt-5 mb-3">Key Insights</h3>
+                        <h3 class="mt-5 mb-3">Definition</h3>
+                        <p>
+                            The ASL metric quantifies model robustness by measuring the average number of sustainable 
+                            loops before failure in the code generation-summarization cycle:
+                        </p>
                         
                         <div class="formula-box">
-                            <code>
-                                Performance Degradation: 5.01% - 19.31% drop in pass@1 within 10 loops<br>
-                                <br>
-                                Key Findings:<br>
-                                - Robustness ≠ Initial Performance<br>
-                                - Qwen2.5-Coder-32B shows superior sustained performance<br>
-                                - Different models exhibit distinct degradation patterns<br>
-                                - Quadratic weighting better captures long-term stability
-                            </code>
+                            <div class="math-formula">
+                                \[ ASL = \frac{\sum_{i=1}^{M} (n_i \times i^2 \times s_i)}{M \times T} \]
+                            </div>
+                            <div class="formula-description">
+                                <strong>where:</strong>
+                                <ul>
+                                    <li><em>M</em> = maximum number of evaluation loops (e.g., 10)</li>
+                                    <li><em>n<sub>i</sub></em> = number of tasks that sustain functionality through exactly <em>i</em> loops</li>
+                                    <li><em>T</em> = total number of tasks in benchmark dataset</li>
+                                    <li><em>s<sub>i</sub></em> = average semantic similarity score for tasks that sustain functionality through exactly <em>i</em> loops</li>
+                                    <li><em>i<sup>2</sup></em> = quadratic weighting emphasizing sustained performance</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3 class="mt-5 mb-3">Key Components</h3>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="metric-card">
+                                    <h5 class="text-primary">Code Generation</h5>
+                                    <p>LLM generates code from natural language specification</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="metric-card">
+                                    <h5 class="text-success">Code Summarization</h5>
+                                    <p>LLM summarizes code back to natural language</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="metric-card">
+                                    <h5 class="text-warning">Loop Iteration</h5>
+                                    <p>Maximum 10 sustainable transformation loops</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="metric-card">
+                                    <h5 class="text-info">Semantic Consistency</h5>
+                                    <p>LLM-based similarity evaluation at failure boundaries</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="mt-5 mb-3">Semantic Similarity Evaluation</h3>
+                        <p>
+                            A critical component of ASL is the semantic similarity evaluation at failure boundaries. 
+                            For successful loops, similarity is assumed to be 1.0 since functionally correct programs 
+                            should be semantically equivalent. For failure boundaries, we use LLM-based evaluation:
+                        </p>
+                        
+                        <div class="formula-box">
+                            <div class="math-formula" style="font-size: 0.9em;">
+                                \[ s_j = \begin{cases} 
+                                1.0 & \text{for successful loops } (j < l) \\
+                                \text{Sim}(\text{prompt}_l, \text{prompt}_{l+1}) & \text{for failure boundary } (l < M)
+                                \end{cases} \]
+                            </div>
+                        </div>
+                        
+                        <h4 class="mt-4 mb-3">LLM-based evaluator prompt:</h4>
+                        <div class="code-example">
+<pre>
+Compare the semantic similarity of these two code generation prompts. Consider both the prompts themselves and their generated code outputs.
+
+Prompt 1: {prompt1}
+Generated Code 1: {code1}
+
+Prompt 2: {prompt2}  
+Generated Code 2: {code2}
+
+Return only a similarity score between 0 and 1, where:
+- 1.0 = semantically equivalent (same intent, requirements, and expected output)
+- 0.0 = completely different semantic meaning
+- Values between 0 and 1 represent partial semantic overlap
+
+Score:
+</pre>
+                        </div>
+<h3 class="mt-5 mb-3">EVALOOP Example</h3>
+                        <div class="code-example">
+<div class="evaloop-example">
+<p><strong>Task:</strong> (Mbpp/138) Write a python function to check whether the given number can be represented as sum of non-zero powers of 2 or not.<br>
+assert is_Sum_Of_Powers_Of_Two(11) == False<br> </p>
+
+<div class="loop-sequence">
+  <div class="loop-item success">
+    <div class="loop-header">
+      <span class="loop-number">Loop 1</span>
+      <span class="status-badge pass">✓ PASS</span>
+    </div>
+    <div class="loop-content">
+      <p><strong>Code:</strong></p>
+      <pre><code class="language-python">def is_Sum_Of_Powers_Of_Two(n):
+        return n > 0 and n % 2 == 0
+    
+    assert is_Sum_Of_Powers_Of_Two(10) == True</code></pre>
+      <p><strong>Summary:</strong> write a python function to determine whether a given integer is positive and even.</p>
+      <p><strong>Semantic Similarity:</strong> s₁ = 1.0 <em>(successful loop)</em></p>
+    </div>
+  </div>
+
+  <div class="loop-item success">
+    <div class="loop-header">
+      <span class="loop-number">Loop 2</span>
+      <span class="status-badge pass">✓ PASS</span>
+    </div>
+    <div class="loop-content">
+      <p><strong>Code:</strong></p>
+      <pre><code class="language-python">def is_Sum_Of_Powers_Of_Two(n):
+        return n > 0 and n % 2 == 0
+    
+    assert is_Sum_Of_Powers_Of_Two(10) == True</code></pre>
+      <p><strong>Summary:</strong> write a python function to check whether a given positive integer is even (greater than 0 and divisible by 2).</p>
+      <p><strong>Semantic Similarity:</strong> s₂ = 1.0 <em>(successful loop)</em></p>
+    </div>
+  </div>
+
+  <div class="loop-item success">
+    <div class="loop-header">
+      <span class="loop-number">Loop 3</span>
+      <span class="status-badge pass">✓ PASS</span>
+    </div>
+    <div class="loop-content">
+      <p><strong>Code:</strong></p>
+      <pre><code class="language-python">def is_Sum_Of_Powers_Of_Two(n):
+        return n > 0 and n % 2 == 0
+    
+    assert is_Sum_Of_Powers_Of_Two(10) == True</code></pre>
+      <p><strong>Summary:</strong> write a python function to determine whether a given integer is positive and even, returning True for such numbers (implying they can be expressed as a sum of powers of two) and False otherwise.</p>
+      <p><strong>Semantic Similarity:</strong> s₃ = 1.0 <em>(successful loop)</em></p>
+    </div>
+  </div>
+
+  <div class="loop-item success">
+    <div class="loop-header">
+      <span class="loop-number">Loop 4</span>
+      <span class="status-badge pass">✓ PASS</span>
+    </div>
+    <div class="loop-content">
+      <p><strong>Code:</strong></p>
+      <pre><code class="language-python">def is_Sum_Of_Powers_Of_Two(n: int) -> bool:
+        return n > 0 and n % 2 == 0
+    
+    
+    assert is_Sum_Of_Powers_Of_Two(10) == True</code></pre>
+      <p><strong>Summary:</strong> write a python function to determine if a positive integer is a sum of powers of two, although the current implementation only checks whether the number is positive and even.</p>
+      <p><strong>Semantic Similarity:</strong> s₄ = 0.85 <em>(LLM evaluator assesses prompt similarity)</em></p>
+    </div>
+  </div>
+
+  <div class="loop-item failure">
+    <div class="loop-header">
+      <span class="loop-number">Loop 5</span>
+      <span class="status-badge pass">✓ FAIL</span>
+    </div>
+    <div class="loop-content">
+      <p><strong>Code:</strong></p>
+      <pre><code class="language-python">def is_Sum_Of_Powers_Of_Two(n):
+        if n <= 0:
+            return False
+        return bin(n).count('1') == 2
+    
+    assert is_Sum_Of_Powers_Of_Two(10) == True</code></pre>
+    <p><strong>Issue:</strong> It wrongly restricts to numbers with exactly two 1s in binary, not any sum of powers of 2.</p>
+    </div>
+  </div>
+
+  <div class="loop-item skipped">
+    <div class="loop-header">
+      <span class="loop-number">Loops 6-10</span>
+      <span class="status-badge skipped">Not reached</span>
+    </div>
+    <div class="loop-content">
+      <p><em>Model failed at Loop 5, remaining loops not executed</em></p>
+    </div>
+  </div>
+</div>
+
+<div class="calculation-section">
+  <h5>🧮 ASL Calculation for This Task</h5>
+  <div class="calculation-steps">
+    <div class="calc-step">
+      <span class="calc-label">Sustained loops:</span>
+      <span class="calc-value">i = 4 <em>(failed at Loop 5)</em></span>
+    </div>
+    <div class="calc-step">
+      <span class="calc-label">Task count:</span>
+      <span class="calc-value">nᵢ = 1 <em>(this task sustained 4 loops)</em></span>
+    </div>
+    <div class="calc-step">
+      <span class="calc-label">Average similarity:</span>
+      <span class="calc-value">sᵢ = (1.0 + 1.0 + 1.0 + 1.0 + 0.5) / 5 = 0.9</span>
+    </div>
+    <div class="calc-step">
+      <span class="calc-label">Task contribution:</span>
+      <span class="calc-value">(1 × 4² × 0.9) / (10 × 378) = 14.4 / 378 = 0.0381</span>
+    </div>
+  </div>
+</div>
+</div>
                         </div>
                     </div>
                 </div>
             </div>
 
+
             <!-- Comparison Tab -->
-            <div class="tab-pane fade" id="comparison" role="tabpanel">
+            <!-- <div class="tab-pane fade" id="comparison" role="tabpanel">
                 <div class="row">
                     <div class="col-lg-10 mx-auto">
                         <h2 class="mb-4">Metric Comparison</h2>
@@ -618,7 +568,7 @@ Output: ASL - Average number of Sustainable Loops
                         </p>
 
                         <div class="table-responsive comparison-table">
-                            <table class="table table-striped mb-0">
+                            <table class="table table-striped table-fixed mb-0">
                                 <thead>
                                     <tr>
                                         <th>Metric</th>
@@ -630,19 +580,22 @@ Output: ASL - Average number of Sustainable Loops
                                 <tbody>
                                     <tr>
                                         <td><strong>EVALOOP (Ours)</strong></td>
-                                        <td>Self-consistency evaluation through code generation-summarization loops</td>
+                                        <td>Self-consistency evaluation through iterative code generation-summarization loops</td>
                                         <td>
                                             <ul class="mb-0">
                                                 <li>No external attacks needed</li>
                                                 <li>Unified metric across models</li>
-                                                <li>Reveals true robustness patterns</li>
+                                                <li>Captures intrinsic stability patterns</li>
                                                 <li>Configuration-independent</li>
+                                                <li>Suitable for agent-based systems</li>
+                                                <li>Reveals degradation through self-referential transformations</li>
                                             </ul>
                                         </td>
                                         <td>
                                             <ul class="mb-0">
-                                                <li>Requires dual capabilities</li>
+                                                <li>Requires dual task capabilities</li>
                                                 <li>Multiple API calls per task</li>
+                                                <li>Higher computational cost</li>
                                             </ul>
                                         </td>
                                     </tr>
@@ -660,23 +613,6 @@ Output: ASL - Average number of Sustainable Loops
                                                 <li>Binary pass/fail only</li>
                                                 <li>No difficulty consideration</li>
                                                 <li>Limited robustness insight</li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>BLEU Score</strong></td>
-                                        <td>N-gram overlap with reference solutions</td>
-                                        <td>
-                                            <ul class="mb-0">
-                                                <li>Language agnostic</li>
-                                                <li>Fast computation</li>
-                                            </ul>
-                                        </td>
-                                        <td>
-                                            <ul class="mb-0">
-                                                <li>Doesn't test functionality</li>
-                                                <li>Style-dependent</li>
-                                                <li>Multiple valid solutions</li>
                                             </ul>
                                         </td>
                                     </tr>
@@ -760,39 +696,13 @@ Output: ASL - Average number of Sustainable Loops
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-4 mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h5 class="mb-3">EVALOOP</h5>
-                    <p class="text-muted">
-                        Advancing LLM evaluation through comprehensive robustness testing
-                    </p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <div class="mb-3">
-                        <a href="https://github.com/EvaLoop-ncsu" class="text-white me-3">
-                            <i class="bi bi-github"></i> GitHub
-                        </a>
-                        <a href="#" class="text-white me-3">
-                            <i class="bi bi-twitter"></i> Twitter
-                        </a>
-                        <a href="about.html" class="text-white">
-                            <i class="bi bi-envelope"></i> Contact
-                        </a>
-                    </div>
-                    <p class="text-muted mb-0">
-                        © 2024 EVALOOP Research Team. All rights reserved.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer Container - Content will be loaded dynamically -->
+    <div id="footer-container"></div>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

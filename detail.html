@@ -83,6 +83,7 @@
             align-items: stretch;
             margin-bottom: 2rem;
             min-height: 150px;
+            justify-content: space-between;
         }
         
         .cycle-content {
@@ -90,6 +91,8 @@
             padding: 1rem;
             border-radius: 8px;
             border: 1px solid #e5e7eb;
+            width: calc(50% - 30px); /* Fixed width: half page minus arrow space */
+            flex-shrink: 0;
         }
         
         .code-content {
@@ -106,6 +109,8 @@
             background-color: #f0fdf4;
             border-left: 4px solid #22c55e;
             margin-bottom: 2rem;
+            width: 100% !important; /* Full width for initial prompt, override cycle-content width */
+            flex-shrink: initial; /* Reset flex-shrink */
         }
         
         .arrow {
@@ -158,6 +163,7 @@
             min-height: 100%;
             align-self: stretch;
             width: 60px;
+            flex-shrink: 0;
         }
 
         .arrow-right svg {
@@ -247,27 +253,23 @@
             font-size: 0.875rem;
             opacity: 0.9;
         }
+        
+        .fail-badge {
+            display: inline-block;
+            background-color: #dc3545;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-left: 0.5rem;
+        }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">
-                <span class="text-primary">EVAL</span><span class="text-secondary">OOP</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Leaderboard</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Header Container - Content will be loaded dynamically -->
+    <div id="header-container"></div>
 
     <!-- Model Header -->
     <div class="model-header">
@@ -342,26 +344,12 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-4 mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h5 class="mb-3">EVALOOP</h5>
-                    <p class="text-muted">
-                        Advancing LLM evaluation through comprehensive robustness testing
-                    </p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <p class="text-muted mb-0">
-                        © 2025 EVALOOP Research Team. All rights reserved.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer Container - Content will be loaded dynamically -->
+    <div id="footer-container"></div>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
     <script>
         let modelData = null;
         let detailData = null;
@@ -370,14 +358,28 @@
 
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const modelId = urlParams.get('model');
-            
-            if (modelId) {
-                loadModelDetails(modelId);
-            } else {
-                showError('No model specified');
-            }
+            // Load header and footer first, then initialize detail page
+            EVALOOP.initPageLayout().then(() => {
+                const urlParams = new URLSearchParams(window.location.search);
+                const modelId = urlParams.get('model');
+                
+                if (modelId) {
+                    loadModelDetails(modelId);
+                } else {
+                    showError('No model specified');
+                }
+            }).catch(error => {
+                console.error('Error loading page layout:', error);
+                // Continue with detail page initialization even if header/footer fail
+                const urlParams = new URLSearchParams(window.location.search);
+                const modelId = urlParams.get('model');
+                
+                if (modelId) {
+                    loadModelDetails(modelId);
+                } else {
+                    showError('No model specified');
+                }
+            });
         });
 
         // Load model details
@@ -556,11 +558,16 @@
             
             // Cycles
             task.cycles.forEach((cycle, index) => {
+                const isLastCycle = index === task.cycles.length - 1;
+                const loopNumber = index + 1;
+                const isFailure = isLastCycle && loopNumber !== 10;
+                const failBadge = isFailure ? '<span class="fail-badge">FAIL</span>' : '';
+                
                 // Code output and Summary output in the same row
                 html += `
                     <div class="cycle-step">
                         <div class="code-content cycle-content">
-                            <div class="cycle-label">Loop ${index + 1} - Code Output</div>
+                            <div class="cycle-label">Loop ${loopNumber} - Code Output${failBadge}</div>
                             <pre><code class="language-python">${escapeHtml(cycle.code_output)}</code></pre>
                         </div>
                         <div class="arrow arrow-right">
@@ -574,7 +581,7 @@
                             </svg>
                         </div>
                         <div class="summary-content cycle-content">
-                            <div class="cycle-label">Loop ${index + 1} - Summary Output</div>
+                            <div class="cycle-label">Loop ${loopNumber} - Summary Output</div>
                             <pre>${escapeHtml(cycle.summary_output)}</pre>
                         </div>
                     </div>

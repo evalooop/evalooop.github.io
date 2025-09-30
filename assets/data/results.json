@@ -1,5 +1,5 @@
 {
-    "lastUpdated": "2025-09-22",
+    "lastUpdated": "2025-09-29",
     "models": [
         {
             "rank": 1,
@@ -8,121 +8,157 @@
             "link": "https://docs.anthropic.com/en/docs/about-claude/models/overview#model-comparison-table",
             "successRate": 0.81,
             "aslScore": 7.786,
-            "rankChange": "+2",
+            "rankChange": "+5",
             "drop": "3.17",
             "model_id": "claude-opus-4",
             "size": null
         },
         {
             "rank": 2,
+            "name": "GPT-5",
+            "organization": "OpenAI",
+            "link": "https://platform.openai.com/docs/models/gpt-5",
+            "successRate": 0.817,
+            "aslScore": 7.774,
+            "rankChange": "-1",
+            "drop": "5.29",
+            "model_id": "gpt-5",
+            "size": null
+        },
+        {
+            "rank": 3,
             "name": "Qwen3-235B-A22B-Instruct-2507",
             "organization": "Alibaba",
             "link": "https://huggingface.co/Qwen/Qwen3-235B-A22B-Instruct-2507",
             "successRate": 0.793,
             "aslScore": 7.689,
-            "rankChange": "+6",
+            "rankChange": "+9",
             "drop": "2.65",
             "model_id": "qwen3-235b-a22b-instruct-2507",
             "size": "235"
         },
         {
-            "rank": 3,
+            "rank": 4,
             "name": "Qwen3-Coder-480B-A35B-Instruct",
             "organization": "Alibaba",
             "link": "https://huggingface.co/Qwen/Qwen3-Coder-480B-A35B-Instruct",
             "successRate": 0.786,
             "aslScore": 7.599,
-            "rankChange": "+6",
+            "rankChange": "+9",
             "drop": "2.65",
             "model_id": "qwen3-coder-480b-a35b-instruct",
             "size": "480"
         },
         {
-            "rank": 4,
+            "rank": 5,
             "name": "Claude Sonnet 4",
             "organization": "Anthropic",
             "link": "https://docs.anthropic.com/en/docs/about-claude/models/overview#model-comparison-table",
             "successRate": 0.783,
             "aslScore": 7.518,
-            "rankChange": "+6",
+            "rankChange": "+9",
             "drop": "3.17",
             "model_id": "claude-sonnet-4",
             "size": null
         },
         {
-            "rank": 5,
+            "rank": 6,
+            "name": "GPT-5-Codex",
+            "organization": "OpenAI",
+            "link": "https://platform.openai.com/docs/models/gpt-5-codex",
+            "successRate": 0.804,
+            "aslScore": 7.484,
+            "rankChange": "+3",
+            "drop": "7.670000000000001",
+            "model_id": "gpt-5-codex",
+            "size": null
+        },
+        {
+            "rank": 7,
             "name": "DeepSeek-V3",
             "organization": "DeepSeek",
             "link": "https://huggingface.co/deepseek-ai/DeepSeek-V3",
             "successRate": 0.804,
             "aslScore": 7.481,
-            "rankChange": "+1",
+            "rankChange": "+3",
             "drop": "6.08",
             "model_id": "deepseek-v3",
             "size": "685"
         },
         {
-            "rank": 6,
+            "rank": 8,
             "name": "o3-mini",
             "organization": "OpenAI",
             "link": "https://platform.openai.com/docs/models/o3-mini",
             "successRate": 0.81,
             "aslScore": 7.456,
-            "rankChange": "-2",
+            "rankChange": "-1",
             "drop": "7.670000000000001",
             "model_id": "o3-mini",
             "size": null
         },
         {
-            "rank": 7,
+            "rank": 9,
+            "name": "GPT-5-mini",
+            "organization": "OpenAI",
+            "link": "https://platform.openai.com/docs/models/gpt-5-mini",
+            "successRate": 0.812,
+            "aslScore": 7.399,
+            "rankChange": "-5",
+            "drop": "8.73",
+            "model_id": "gpt-5-mini",
+            "size": null
+        },
+        {
+            "rank": 10,
             "name": "o3",
             "organization": "OpenAI",
             "link": "https://platform.openai.com/docs/models/o3",
             "successRate": 0.802,
             "aslScore": 7.383,
-            "rankChange": "=",
+            "rankChange": "+1",
             "drop": "8.200000000000001",
             "model_id": "o3",
             "size": null
         },
         {
-            "rank": 8,
+            "rank": 11,
             "name": "GPT-4.1",
             "organization": "OpenAI",
             "link": "https://platform.openai.com/docs/models/gpt-4.1",
             "successRate": 0.775,
             "aslScore": 7.355,
-            "rankChange": "+4",
+            "rankChange": "+5",
             "drop": "4.2299999999999995",
             "model_id": "gpt-4.1",
             "size": null
         },
         {
-            "rank": 9,
+            "rank": 12,
             "name": "o4-mini",
             "organization": "OpenAI",
             "link": "https://platform.openai.com/docs/models/o4-mini",
             "successRate": 0.815,
             "aslScore": 7.317,
-            "rankChange": "-8",
+            "rankChange": "-9",
             "drop": "10.05",
             "model_id": "o4-mini",
             "size": null
         },
         {
-            "rank": 10,
+            "rank": 13,
             "name": "GPT-4.1-mini",
             "organization": "OpenAI",
             "link": "https://platform.openai.com/docs/models/gpt-4.1-mini",
             "successRate": 0.778,
             "aslScore": 7.29,
-            "rankChange": "+1",
+            "rankChange": "+2",
             "drop": "5.029999999999999",
             "model_id": "gpt-4.1-mini",
             "size": null
         },
         {
-            "rank": 11,
+            "rank": 14,
             "name": "o1",
             "organization": "OpenAI",
             "link": "https://platform.openai.com/docs/models/o1",
@@ -134,19 +170,31 @@
             "size": null
         },
         {
-            "rank": 12,
+            "rank": 15,
+            "name": "GPT-5-nano",
+            "organization": "OpenAI",
+            "link": "https://platform.openai.com/docs/models/gpt-5-nano",
+            "successRate": 0.817,
+            "aslScore": 7.276,
+            "rankChange": "-13",
+            "drop": "11.379999999999999",
+            "model_id": "gpt-5-nano",
+            "size": null
+        },
+        {
+            "rank": 16,
             "name": "o1-mini",
             "organization": "OpenAI",
             "link": "https://platform.openai.com/docs/models/o1-mini",
             "successRate": 0.81,
             "aslScore": 7.254,
-            "rankChange": "-7",
+            "rankChange": "-8",
             "drop": "10.58",
             "model_id": "o1-mini",
             "size": null
         },
         {
-            "rank": 13,
+            "rank": 17,
             "name": "Qwen2.5-Coder-32B-Instruct",
             "organization": "Alibaba",
             "link": "https://huggingface.co/Qwen/Qwen2.5-Coder-32B-Instruct",
@@ -158,7 +206,7 @@
             "size": "32"
         },
         {
-            "rank": 14,
+            "rank": 18,
             "name": "Gemini 2.5 Flash-Lite",
             "organization": "Google",
             "link": "https://ai.google.dev/gemini-api/docs/models#gemini-2.5-flash-lite",
@@ -170,19 +218,19 @@
             "size": null
         },
         {
-            "rank": 15,
+            "rank": 19,
             "name": "Qwen3-30B-A3B-Instruct-2507",
             "organization": "Alibaba",
             "link": "https://huggingface.co/Qwen/Qwen3-30B-A3B-Instruct-2507",
             "successRate": 0.751,
             "aslScore": 7.124,
-            "rankChange": "+11",
+            "rankChange": "+12",
             "drop": "3.9699999999999998",
             "model_id": "qwen3-30b-a3b-instruct-2507",
             "size": "30.5"
         },
         {
-            "rank": 16,
+            "rank": 20,
             "name": "Claude Haiku 3.5",
             "organization": "Anthropic",
             "link": "https://docs.anthropic.com/en/docs/about-claude/models/overview#model-comparison-table",
@@ -194,7 +242,7 @@
             "size": null
         },
         {
-            "rank": 17,
+            "rank": 21,
             "name": "DeepSeek-Coder-V2-Instruct",
             "organization": "DeepSeek",
             "link": "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Instruct",
@@ -206,7 +254,7 @@
             "size": "236"
         },
         {
-            "rank": 18,
+            "rank": 22,
             "name": "Gemini 2.0 Flash",
             "organization": "Google",
             "link": "https://ai.google.dev/gemini-api/docs/models#gemini-2.0-flash",
@@ -218,19 +266,19 @@
             "size": null
         },
         {
-            "rank": 19,
+            "rank": 23,
             "name": "GPT-4o",
             "organization": "OpenAI",
             "link": "https://platform.openai.com/docs/models/gpt-4o",
             "successRate": 0.759,
             "aslScore": 7.039,
-            "rankChange": "+4",
+            "rankChange": "+5",
             "drop": "5.82",
             "model_id": "gpt-4o",
             "size": null
         },
         {
-            "rank": 20,
+            "rank": 24,
             "name": "DeepSeek-V2.5",
             "organization": "DeepSeek",
             "link": "https://huggingface.co/deepseek-ai/DeepSeek-V2.5",
@@ -242,7 +290,7 @@
             "size": "236"
         },
         {
-            "rank": 21,
+            "rank": 25,
             "name": "Llama-4-Maverick-17B-128E-Instruct",
             "organization": "Meta",
             "link": "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct",
@@ -254,7 +302,7 @@
             "size": "402"
         },
         {
-            "rank": 22,
+            "rank": 26,
             "name": "Gemini 2.5 Flash",
             "organization": "Google",
             "link": "https://ai.google.dev/gemini-api/docs/models#gemini-2.5-flash",
@@ -266,19 +314,19 @@
             "size": null
         },
         {
-            "rank": 23,
+            "rank": 27,
             "name": "gemma-3-27b-it",
             "organization": "Google",
             "link": "https://huggingface.co/google/gemma-3-27b-it",
             "successRate": 0.746,
             "aslScore": 6.905,
-            "rankChange": "+4",
+            "rankChange": "+5",
             "drop": "5.82",
             "model_id": "gemma-3-27b-it",
             "size": "27.4"
         },
         {
-            "rank": 24,
+            "rank": 28,
             "name": "Gemini 2.5 Pro",
             "organization": "Google",
             "link": "https://ai.google.dev/gemini-api/docs/models#gemini-2.5-pro",
@@ -290,79 +338,79 @@
             "size": null
         },
         {
-            "rank": 25,
+            "rank": 29,
             "name": "gemma-3-12b-it",
             "organization": "Google",
             "link": "https://huggingface.co/google/gemma-3-12b-it",
             "successRate": 0.722,
             "aslScore": 6.839,
-            "rankChange": "+12",
+            "rankChange": "+13",
             "drop": "3.9699999999999998",
             "model_id": "gemma-3-12b-it",
             "size": "12.2"
         },
         {
-            "rank": 26,
+            "rank": 30,
             "name": "GPT-4-Turbo",
             "organization": "OpenAI",
             "link": "https://platform.openai.com/docs/models/gpt-4-turbo",
             "successRate": 0.741,
             "aslScore": 6.82,
-            "rankChange": "+2",
+            "rankChange": "+3",
             "drop": "6.61",
             "model_id": "gpt-4-turbo",
             "size": null
         },
         {
-            "rank": 27,
+            "rank": 31,
             "name": "GLM-4.5-Air",
             "organization": "Zhipu",
             "link": "https://huggingface.co/zai-org/GLM-4.5-Air",
             "successRate": 0.728,
             "aslScore": 6.809,
-            "rankChange": "+6",
+            "rankChange": "+7",
             "drop": "4.760000000000001",
             "model_id": "glm-4.5-air",
             "size": "110"
         },
         {
-            "rank": 28,
+            "rank": 32,
             "name": "Llama-3.1-405B-Instruct",
             "organization": "Meta",
             "link": "https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct",
             "successRate": 0.722,
             "aslScore": 6.787,
-            "rankChange": "+10",
+            "rankChange": "+11",
             "drop": "4.5",
             "model_id": "llama-3.1-405b-instruct",
             "size": "406"
         },
         {
-            "rank": 29,
+            "rank": 33,
             "name": "Gemini 2.0 Flash-Lite",
             "organization": "Google",
             "link": "https://ai.google.dev/gemini-api/docs/models#gemini-2.0-flash-lite",
             "successRate": 0.738,
             "aslScore": 6.775,
-            "rankChange": "=",
+            "rankChange": "+1",
             "drop": "6.35",
             "model_id": "gemini-2.0-flash-lite",
             "size": null
         },
         {
-            "rank": 30,
+            "rank": 34,
             "name": "Qwen2.5-Coder-14B-Instruct",
             "organization": "Alibaba",
             "link": "https://huggingface.co/Qwen/Qwen2.5-Coder-14B-Instruct",
             "successRate": 0.733,
             "aslScore": 6.676,
-            "rankChange": "=",
+            "rankChange": "+1",
             "drop": "6.61",
             "model_id": "qwen2.5-coder-14b-instruct",
             "size": "32"
         },
         {
-            "rank": 31,
+            "rank": 35,
             "name": "Qwen3-Coder-30B-A3B-Instruct",
             "organization": "Alibaba",
             "link": "https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct",
@@ -374,103 +422,115 @@
             "size": "30.5"
         },
         {
-            "rank": 32,
+            "rank": 36,
             "name": "NextCoder-32B",
             "organization": "Microsoft",
             "link": "https://huggingface.co/microsoft/NextCoder-32B",
             "successRate": 0.754,
             "aslScore": 6.61,
-            "rankChange": "-8",
+            "rankChange": "-7",
             "drop": "9.790000000000001",
             "model_id": "nextcoder-32b",
             "size": "32"
         },
         {
-            "rank": 33,
+            "rank": 37,
             "name": "NextCoder-14B",
             "organization": "Microsoft",
             "link": "https://huggingface.co/microsoft/NextCoder-14B",
             "successRate": 0.725,
             "aslScore": 6.52,
-            "rankChange": "+1",
+            "rankChange": "+2",
             "drop": "7.41",
             "model_id": "nextcoder-14b",
             "size": "32"
         },
         {
-            "rank": 34,
+            "rank": 38,
             "name": "Llama-3.3-70B-Instruct",
             "organization": "Meta",
             "link": "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct",
             "successRate": 0.714,
             "aslScore": 6.517,
-            "rankChange": "+10",
+            "rankChange": "+11",
             "drop": "6.35",
             "model_id": "llama-3.3-70b-instruct",
             "size": "70.6"
         },
         {
-            "rank": 35,
+            "rank": 39,
             "name": "OpenCoder-8B-Instruct",
             "organization": "LM Studio Community",
             "link": "https://huggingface.co/infly/OpenCoder-8B-Instruct",
             "successRate": 0.701,
             "aslScore": 6.49,
-            "rankChange": "+12",
+            "rankChange": "+13",
             "drop": "5.29",
             "model_id": "opencoder-8b-instruct",
             "size": "7.77"
         },
         {
-            "rank": 36,
+            "rank": 40,
             "name": "Seed-Coder-8B-Instruct",
             "organization": "ByteDance",
             "link": "https://huggingface.co/ByteDance-Seed/Seed-Coder-8B-Instruct",
             "successRate": 0.73,
             "aslScore": 6.452,
-            "rankChange": "-5",
+            "rankChange": "-4",
             "drop": "8.73",
             "model_id": "seed-coder-8b-instruct",
             "size": "8.25"
         },
         {
-            "rank": 37,
+            "rank": 41,
             "name": "Mistral-Large-Instruct-2407",
             "organization": "Mistral",
             "link": "https://huggingface.co/mistralai/Mistral-Large-Instruct-2407",
             "successRate": 0.714,
             "aslScore": 6.422,
-            "rankChange": "+8",
+            "rankChange": "+9",
             "drop": "7.41",
             "model_id": "mistral-large-instruct-2407",
             "size": "123"
         },
         {
-            "rank": 38,
+            "rank": 42,
             "name": "CodeQwen1.5-7B-Chat",
             "organization": "Alibaba",
             "link": "https://huggingface.co/Qwen/CodeQwen1.5-7B-Chat",
             "successRate": 0.698,
             "aslScore": 6.41,
-            "rankChange": "+11",
+            "rankChange": "+12",
             "drop": "5.82",
             "model_id": "codeqwen1.5-7b-chat",
             "size": "7.25"
         },
         {
-            "rank": 39,
+            "rank": 43,
             "name": "DeepSeek-Coder-V2-Lite-Instruct",
             "organization": "DeepSeek",
             "link": "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct",
             "successRate": 0.713,
             "aslScore": 6.377,
-            "rankChange": "+7",
+            "rankChange": "+8",
             "drop": "8.200000000000001",
             "model_id": "deepseek-coder-v2-lite-instruct",
             "size": "236"
         },
         {
-            "rank": 40,
+            "rank": 44,
+            "name": "DeepSeek-R1-0528",
+            "organization": "DeepSeek",
+            "link": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528",
+            "successRate": 0.765,
+            "aslScore": 6.363,
+            "rankChange": "-17",
+            "drop": "16.669999999999998",
+            "model_id": "deepseek-r1-0528",
+            "size": "685"
+        },
+        {
+            "rank": 45,
             "name": "Qwen2.5-Coder-7B-Instruct",
             "organization": "Alibaba",
             "link": "https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct",
@@ -482,7 +542,7 @@
             "size": "32"
         },
         {
-            "rank": 41,
+            "rank": 46,
             "name": "Hermes-3-Llama-3.1-405B",
             "organization": "NousResearch",
             "link": "https://huggingface.co/NousResearch/Hermes-3-Llama-3.1-405B",
@@ -494,7 +554,7 @@
             "size": "406"
         },
         {
-            "rank": 42,
+            "rank": 47,
             "name": "gemma-3n-E4B-it",
             "organization": "Google",
             "link": "https://huggingface.co/google/gemma-3n-E4B-it",
@@ -506,7 +566,7 @@
             "size": "4"
         },
         {
-            "rank": 43,
+            "rank": 48,
             "name": "GPT-3.5-Turbo",
             "organization": "OpenAI",
             "link": "https://platform.openai.com/docs/models/gpt-3.5-turbo",
@@ -518,7 +578,7 @@
             "size": null
         },
         {
-            "rank": 44,
+            "rank": 49,
             "name": "GLM-4.5",
             "organization": "Zhipu",
             "link": "https://huggingface.co/zai-org/GLM-4.5",
@@ -530,7 +590,7 @@
             "size": "358"
         },
         {
-            "rank": 45,
+            "rank": 50,
             "name": "GLM-4-9B-0414",
             "organization": "Zhipu",
             "link": "https://huggingface.co/zai-org/GLM-4-9B-0414",
@@ -542,7 +602,7 @@
             "size": "32"
         },
         {
-            "rank": 46,
+            "rank": 51,
             "name": "Ling-lite-1.5",
             "organization": "inclusionAI",
             "link": "https://huggingface.co/inclusionAI/Ling-lite-1.5",
@@ -554,7 +614,7 @@
             "size": "16.8"
         },
         {
-            "rank": 47,
+            "rank": 52,
             "name": "Pixtral-Large-Instruct-2411",
             "organization": "Mistral",
             "link": "https://huggingface.co/mistralai/Pixtral-Large-Instruct-2411",
@@ -566,7 +626,7 @@
             "size": "124"
         },
         {
-            "rank": 48,
+            "rank": 53,
             "name": "MiniCPM4-8B",
             "organization": "OpenBMB",
             "link": "https://huggingface.co/openbmb/MiniCPM4-8B",
@@ -578,7 +638,7 @@
             "size": "8"
         },
         {
-            "rank": 49,
+            "rank": 54,
             "name": "Mistral-Small-3.2-24B-Instruct-2506",
             "organization": "Mistral",
             "link": "https://huggingface.co/mistralai/Mistral-Small-3.2-24B-Instruct-2506",
@@ -590,7 +650,7 @@
             "size": "24"
         },
         {
-            "rank": 50,
+            "rank": 55,
             "name": "Llama-3.1-70B-Instruct",
             "organization": "Meta",
             "link": "https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct",
@@ -602,7 +662,7 @@
             "size": "70.6"
         },
         {
-            "rank": 51,
+            "rank": 56,
             "name": "Meta-Llama-3-70B-Instruct",
             "organization": "Meta",
             "link": "https://huggingface.co/meta-llama/Meta-Llama-3-70B-Instruct",
@@ -614,7 +674,7 @@
             "size": "70"
         },
         {
-            "rank": 52,
+            "rank": 57,
             "name": "Qwen3-4B-Instruct-2507",
             "organization": "Alibaba",
             "link": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
@@ -626,7 +686,7 @@
             "size": "4.02"
         },
         {
-            "rank": 53,
+            "rank": 58,
             "name": "Hermes-3-Llama-3.1-70B",
             "organization": "NousResearch",
             "link": "https://huggingface.co/NousResearch/Hermes-3-Llama-3.1-70B",
@@ -638,7 +698,7 @@
             "size": "70.6"
         },
         {
-            "rank": 54,
+            "rank": 59,
             "name": "Qwen2.5-Coder-3B-Instruct",
             "organization": "Alibaba",
             "link": "https://huggingface.co/Qwen/Qwen2.5-Coder-3B-Instruct",
@@ -650,7 +710,7 @@
             "size": "32"
         },
         {
-            "rank": 55,
+            "rank": 60,
             "name": "Mistral-Small-3.1-24B-Instruct-2503",
             "organization": "Mistral",
             "link": "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503",
@@ -662,7 +722,7 @@
             "size": "24"
         },
         {
-            "rank": 56,
+            "rank": 61,
             "name": "DeepSeek-V2-Chat",
             "organization": "DeepSeek",
             "link": "https://huggingface.co/deepseek-ai/DeepSeek-V2-Chat",
@@ -674,7 +734,7 @@
             "size": "236"
         },
         {
-            "rank": 57,
+            "rank": 62,
             "name": "Baichuan-M2-32B",
             "organization": "Baichuan",
             "link": "https://huggingface.co/baichuan-inc/Baichuan-M2-32B",
@@ -686,7 +746,7 @@
             "size": "32.8"
         },
         {
-            "rank": 58,
+            "rank": 63,
             "name": "deepseek-coder-33b-instruct",
             "organization": "DeepSeek",
             "link": "https://huggingface.co/deepseek-ai/deepseek-coder-33b-instruct",
@@ -698,7 +758,7 @@
             "size": "33.3"
         },
         {
-            "rank": 59,
+            "rank": 64,
             "name": "gemma-3-4b-it",
             "organization": "Google",
             "link": "https://huggingface.co/google/gemma-3-4b-it",
@@ -710,7 +770,7 @@
             "size": "4.3"
         },
         {
-            "rank": 60,
+            "rank": 65,
             "name": "Mistral-Small-Instruct-2409",
             "organization": "Mistral",
             "link": "https://huggingface.co/mistralai/Mistral-Small-Instruct-2409",
@@ -722,7 +782,7 @@
             "size": "22"
         },
         {
-            "rank": 61,
+            "rank": 66,
             "name": "Mixtral-8x22B-Instruct-v0.1",
             "organization": "Mistral",
             "link": "https://huggingface.co/mistralai/Mixtral-8x22B-Instruct-v0.1",
@@ -734,7 +794,7 @@
             "size": "141"
         },
         {
-            "rank": 62,
+            "rank": 67,
             "name": "Codestral-22B-v0.1",
             "organization": "Mistral",
             "link": "https://huggingface.co/mistralai/Codestral-22B-v0.1",
@@ -746,7 +806,7 @@
             "size": "22.2"
         },
         {
-            "rank": 63,
+            "rank": 68,
             "name": "deepseek-coder-7b-instruct-v1.5",
             "organization": "DeepSeek",
             "link": "https://huggingface.co/deepseek-ai/deepseek-coder-7b-instruct-v1.5",
@@ -758,7 +818,7 @@
             "size": "6.91"
         },
         {
-            "rank": 64,
+            "rank": 69,
             "name": "Qwen2.5-Coder-1.5B-Instruct",
             "organization": "Alibaba",
             "link": "https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct",
@@ -770,7 +830,7 @@
             "size": "32"
         },
         {
-            "rank": 65,
+            "rank": 70,
             "name": "Llama-4-Scout-17B-16E-Instruct",
             "organization": "Meta",
             "link": "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
@@ -782,7 +842,7 @@
             "size": "109"
         },
         {
-            "rank": 66,
+            "rank": 71,
             "name": "gemma-3n-E2B-it",
             "organization": "Google",
             "link": "https://huggingface.co/google/gemma-3n-E2B-it",
@@ -794,7 +854,7 @@
             "size": "4"
         },
         {
-            "rank": 67,
+            "rank": 72,
             "name": "Phi-4-reasoning",
             "organization": "Microsoft",
             "link": "https://huggingface.co/microsoft/Phi-4-reasoning",
@@ -806,7 +866,7 @@
             "size": "14"
         },
         {
-            "rank": 68,
+            "rank": 73,
             "name": "Ministral-8B-Instruct-2410",
             "organization": "Mistral",
             "link": "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410",
@@ -818,7 +878,7 @@
             "size": "8.02"
         },
         {
-            "rank": 69,
+            "rank": 74,
             "name": "LFM-7B",
             "organization": "Liquid",
             "link": "https://www.liquid.ai/blog/introducing-lfm-7b-setting-new-standards-for-efficient-language-models",
@@ -830,7 +890,7 @@
             "size": null
         },
         {
-            "rank": 70,
+            "rank": 75,
             "name": "Phi-3.5-MoE-instruct",
             "organization": "Microsoft",
             "link": "https://huggingface.co/microsoft/Phi-3.5-MoE-instruct",
@@ -842,7 +902,7 @@
             "size": "3.8"
         },
         {
-            "rank": 71,
+            "rank": 76,
             "name": "Phi-3.5-mini-instruct",
             "organization": "Microsoft",
             "link": "https://huggingface.co/microsoft/Phi-3.5-mini-instruct",
@@ -854,7 +914,7 @@
             "size": "3.8"
         },
         {
-            "rank": 72,
+            "rank": 77,
             "name": "Mixtral-8x7B-Instruct-v0.1",
             "organization": "Mistral",
             "link": "https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1",
@@ -866,7 +926,7 @@
             "size": "46.7"
         },
         {
-            "rank": 73,
+            "rank": 78,
             "name": "Ling-plus",
             "organization": "inclusionAI",
             "link": "https://huggingface.co/inclusionAI/Ling-plus",
@@ -878,7 +938,7 @@
             "size": "16.8"
         },
         {
-            "rank": 74,
+            "rank": 79,
             "name": "Hermes-3-Llama-3.1-8B",
             "organization": "NousResearch",
             "link": "https://huggingface.co/NousResearch/Hermes-3-Llama-3.1-8B",
@@ -890,7 +950,7 @@
             "size": "8.03"
         },
         {
-            "rank": 75,
+            "rank": 80,
             "name": "Meta-Llama-3-8B-Instruct",
             "organization": "Meta",
             "link": "https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct",
@@ -902,7 +962,7 @@
             "size": "70"
         },
         {
-            "rank": 76,
+            "rank": 81,
             "name": "Phi-4-mini-instruct",
             "organization": "Microsoft",
             "link": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
@@ -914,7 +974,7 @@
             "size": "3.8"
         },
         {
-            "rank": 77,
+            "rank": 82,
             "name": "Qwen3-235B-A22B",
             "organization": "Alibaba",
             "link": "https://huggingface.co/Qwen/Qwen3-235B-A22B",
@@ -926,7 +986,7 @@
             "size": "235"
         },
         {
-            "rank": 78,
+            "rank": 83,
             "name": "Qwen2.5-Coder-0.5B-Instruct",
             "organization": "Alibaba",
             "link": "https://huggingface.co/Qwen/Qwen2.5-Coder-0.5B-Instruct",
@@ -938,7 +998,7 @@
             "size": "32"
         },
         {
-            "rank": 79,
+            "rank": 84,
             "name": "DeepSeek-V2-Lite-Chat",
             "organization": "DeepSeek",
             "link": "https://huggingface.co/deepseek-ai/DeepSeek-V2-Lite-Chat",
@@ -950,7 +1010,7 @@
             "size": "15.7"
         },
         {
-            "rank": 80,
+            "rank": 85,
             "name": "Moonlight-16B-A3B-Instruct",
             "organization": "Moonlight",
             "link": "https://huggingface.co/moonshotai/Moonlight-16B-A3B-Instruct",
@@ -962,7 +1022,7 @@
             "size": "16"
         },
         {
-            "rank": 81,
+            "rank": 86,
             "name": "Mistral-7B-Instruct-v0.3",
             "organization": "Mistral",
             "link": "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3",
@@ -974,7 +1034,7 @@
             "size": "7.25"
         },
         {
-            "rank": 82,
+            "rank": 87,
             "name": "NextCoder-7B",
             "organization": "Microsoft",
             "link": "https://huggingface.co/microsoft/NextCoder-7B",
@@ -986,7 +1046,7 @@
             "size": "32"
         },
         {
-            "rank": 83,
+            "rank": 88,
             "name": "Seed-Coder-8B-Reasoning",
             "organization": "ByteDance",
             "link": "https://huggingface.co/ByteDance-Seed/Seed-Coder-8B-Reasoning",
@@ -998,7 +1058,7 @@
             "size": "8.25"
         },
         {
-            "rank": 84,
+            "rank": 89,
             "name": "Phi-3-mini-4k-instruct",
             "organization": "Microsoft",
             "link": "https://huggingface.co/microsoft/Phi-3-mini-4k-instruct",
@@ -1010,7 +1070,7 @@
             "size": "3.8"
         },
         {
-            "rank": 85,
+            "rank": 90,
             "name": "Mistral-7B-Instruct-v0.2",
             "organization": "Mistral",
             "link": "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2",
@@ -1022,7 +1082,7 @@
             "size": "7.24"
         },
         {
-            "rank": 86,
+            "rank": 91,
             "name": "Llama-3.1-8B-Instruct",
             "organization": "Meta",
             "link": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct",
@@ -1034,7 +1094,7 @@
             "size": "8.03"
         },
         {
-            "rank": 87,
+            "rank": 92,
             "name": "DeepSeek-R1-Distill-Llama-70B",
             "organization": "DeepSeek",
             "link": "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Llama-70B",
@@ -1046,7 +1106,7 @@
             "size": "70.6"
         },
         {
-            "rank": 88,
+            "rank": 93,
             "name": "Phi-3-medium-4k-instruct",
             "organization": "Microsoft",
             "link": "https://huggingface.co/microsoft/Phi-3-medium-4k-instruct",
@@ -1058,7 +1118,7 @@
             "size": "14"
         },
         {
-            "rank": 89,
+            "rank": 94,
             "name": "OpenCoder-1.5B-Instruct",
             "organization": "LM Studio Community",
             "link": "https://huggingface.co/infly/OpenCoder-1.5B-Instruct",
@@ -1070,7 +1130,7 @@
             "size": "1.91"
         },
         {
-            "rank": 90,
+            "rank": 95,
             "name": "Qwen3-4B-Thinking-2507",
             "organization": "Alibaba",
             "link": "https://huggingface.co/Qwen/Qwen3-4B-Thinking-2507",
@@ -1082,7 +1142,7 @@
             "size": "4.02"
         },
         {
-            "rank": 91,
+            "rank": 96,
             "name": "GLM-4-32B-0414",
             "organization": "Zhipu",
             "link": "https://huggingface.co/zai-org/GLM-4-32B-0414",
@@ -1094,7 +1154,7 @@
             "size": "32"
         },
         {
-            "rank": 92,
+            "rank": 97,
             "name": "Jan-v1-4B",
             "organization": "Janhq",
             "link": "https://huggingface.co/janhq/Jan-v1-4B",
@@ -1106,7 +1166,7 @@
             "size": "4.02"
         },
         {
-            "rank": 93,
+            "rank": 98,
             "name": "Qwen3-1.7B",
             "organization": "Alibaba",
             "link": "https://huggingface.co/Qwen/Qwen3-1.7B",
@@ -1118,7 +1178,7 @@
             "size": "2.03"
         },
         {
-            "rank": 94,
+            "rank": 99,
             "name": "Claude Haiku 3",
             "organization": "Anthropic",
             "link": "https://docs.anthropic.com/en/docs/about-claude/models/overview#model-comparison-table",
@@ -1130,7 +1190,7 @@
             "size": null
         },
         {
-            "rank": 95,
+            "rank": 100,
             "name": "deepseek-coder-1.3b-instruct",
             "organization": "DeepSeek",
             "link": "https://huggingface.co/deepseek-ai/deepseek-coder-1.3b-instruct",
@@ -1142,7 +1202,7 @@
             "size": "1.35"
         },
         {
-            "rank": 96,
+            "rank": 101,
             "name": "deepseek-coder-6.7b-instruct",
             "organization": "DeepSeek",
             "link": "https://huggingface.co/deepseek-ai/deepseek-coder-6.7b-instruct",

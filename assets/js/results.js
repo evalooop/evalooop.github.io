@@ -331,7 +331,7 @@ function updateKeyFindings() {
         
         // Update second finding - performance drop range
         if (listItems[1] && drops.length > 0) {
-            listItems[1].textContent = `EVALOOP induces ${minDrop.toFixed(2)}%-${maxDrop.toFixed(2)}% absolute drop in pass@1 performance within 10 loops`;
+            listItems[1].textContent = `EVALOOOP induces ${minDrop.toFixed(2)}%-${maxDrop.toFixed(2)}% absolute drop in pass@1 performance within 10 loops`;
         }
     }
 }
@@ -1184,7 +1184,7 @@ function downloadData(type) {
                 },
                 models: modelsData
             }, null, 2);
-            filename = 'evaloop_full_dataset.json';
+            filename = 'evalooop_full_dataset.json';
             mimeType = 'application/json';
             break;
             
@@ -1198,7 +1198,7 @@ function downloadData(type) {
                 avg_time: m.avgTime,
                 robustness_score: m.robustnessScore
             })));
-            filename = 'evaloop_summary.csv';
+            filename = 'evalooop_summary.csv';
             mimeType = 'text/csv';
             break;
             

@@ -480,11 +480,11 @@ function exportData(format) {
     
     if (format === 'csv') {
         data = convertToCSV(modelsData);
-        filename = 'evaloop_leaderboard.csv';
+        filename = 'evalooop_leaderboard.csv';
         downloadFile(data, filename, 'text/csv');
     } else if (format === 'json') {
         data = JSON.stringify(modelsData, null, 2);
-        filename = 'evaloop_leaderboard.json';
+        filename = 'evalooop_leaderboard.json';
         downloadFile(data, filename, 'application/json');
     }
 }

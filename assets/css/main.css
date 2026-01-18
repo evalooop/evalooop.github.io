@@ -697,6 +697,54 @@ html {
     font-size: 1.5rem !important;
 }
 
+/* Subscription Section Styles */
+.subscription-section {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 3rem 0;
+    border: 2px solid #0ea5e9;
+}
+
+.subscription-section h5 {
+    color: #0c4a6e;
+    margin-bottom: 1rem;
+}
+
+.subscription-section p {
+    color: #075985;
+    margin-bottom: 1.5rem;
+}
+
+.subscription-form {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.subscription-form input {
+    flex: 1;
+    min-width: 200px;
+}
+
+.subscription-success {
+    display: none;
+    background: #dcfce7;
+    color: #166534;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.subscription-error {
+    display: none;
+    background: #fef2f2;
+    color: #991b1b;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
 /* Print Styles */
 @media print {
     .navbar,

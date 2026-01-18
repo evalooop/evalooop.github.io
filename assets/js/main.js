@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         loadTopModels();
         initSmoothScroll();
         initNavbarHighlight();
+        initializeSubscriptionForm();
     }).catch(error => {
         console.error('Error during initialization:', error);
         // Initialize with fallback values if loading fails
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         loadTopModels();
         initSmoothScroll();
         initNavbarHighlight();
+        initializeSubscriptionForm();
     });
 });
 
@@ -395,6 +397,82 @@ function initPageLayout() {
     ]).then(() => {
         initSmoothScroll();
         initNavbarHighlight();
+        initializeSubscriptionForm();
+    });
+}
+
+// Initialize subscription form (reusable across all pages)
+function initializeSubscriptionForm() {
+    const subscriptionForm = document.getElementById('subscriptionForm');
+    if (!subscriptionForm) return;
+    
+    subscriptionForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const emailInput = document.getElementById('subscriptionEmail');
+        const successMsg = document.getElementById('subscriptionSuccess');
+        const errorMsg = document.getElementById('subscriptionError');
+        const submitButton = subscriptionForm.querySelector('button[type="submit"]');
+        
+        // Hide previous messages
+        successMsg.style.display = 'none';
+        errorMsg.style.display = 'none';
+        
+        // Get form action URL (Formspree endpoint)
+        const formAction = subscriptionForm.getAttribute('action');
+        
+        // If the form action still has placeholder, show error
+        if (formAction && formAction.includes('YOUR_FORM_ID')) {
+            errorMsg.textContent = 'Please configure the Formspree endpoint. See subscription setup in the code.';
+            errorMsg.style.display = 'block';
+            return;
+        }
+        
+        // Disable submit button
+        const originalButtonText = submitButton.innerHTML;
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<i class="bi bi-hourglass-split"></i> Subscribing...';
+        
+        try {
+            // Use Formspree or similar service
+            const formData = new FormData(subscriptionForm);
+            
+            // For Formspree, send as form-encoded
+            const response = await fetch(formAction, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                // Success
+                emailInput.value = '';
+                successMsg.style.display = 'block';
+                subscriptionForm.style.display = 'none';
+                
+                // Scroll to success message
+                successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } else {
+                // Handle Formspree errors
+                const data = await response.json();
+                if (data.error) {
+                    errorMsg.textContent = data.error;
+                } else {
+                    errorMsg.textContent = 'Subscription failed. Please try again.';
+                }
+                errorMsg.style.display = 'block';
+            }
+        } catch (error) {
+            console.error('Subscription error:', error);
+            errorMsg.textContent = 'Unable to subscribe. Please check your connection and try again.';
+            errorMsg.style.display = 'block';
+        } finally {
+            // Re-enable submit button
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalButtonText;
+        }
     });
 }
 

@@ -681,3 +681,4 @@ function showError(message) {
     `;
     container.insertBefore(alert, container.firstChild);
 }
+

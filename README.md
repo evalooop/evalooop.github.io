@@ -6,7 +6,7 @@ EVALOOP is a novel assessment framework that evaluates LLM robustness in program
 
 **Paper**: [arXiv:2505.12185](https://arxiv.org/abs/2505.12185)  
 **GitHub**: [https://github.com/EvaLoop-ncsu](https://github.com/EvaLoop-ncsu)  
-**Live Demo**: [https://evaloop.github.io](https://evaloop.github.io)
+**Live Demo**: [https://evalooop.github.io](https://evalooop.github.io)
 
 ## Key Features
 

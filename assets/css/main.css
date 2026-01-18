@@ -728,7 +728,7 @@ html {
 }
 
 .subscription-success {
-    display: none;
+    display: none !important;
     background: #dcfce7;
     color: #166534;
     padding: 1rem;
@@ -737,7 +737,7 @@ html {
 }
 
 .subscription-error {
-    display: none;
+    display: none !important;
     background: #fef2f2;
     color: #991b1b;
     padding: 1rem;

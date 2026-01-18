@@ -406,6 +406,12 @@ function initializeSubscriptionForm() {
     const subscriptionForm = document.getElementById('subscriptionForm');
     if (!subscriptionForm) return;
     
+    // Ensure success and error messages are hidden on page load
+    const successMsg = document.getElementById('subscriptionSuccess');
+    const errorMsg = document.getElementById('subscriptionError');
+    if (successMsg) successMsg.style.display = 'none';
+    if (errorMsg) errorMsg.style.display = 'none';
+    
     subscriptionForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         

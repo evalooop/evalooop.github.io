@@ -1,5 +1,5 @@
 {
-    "lastUpdated": "2025-10-30",
+    "lastUpdated": "2026-08-31",
     "models": [
         {
             "rank": 1,
@@ -127,7 +127,7 @@
             "organization": "OpenAI",
             "link": "https://platform.openai.com/docs/models/gpt-5-mini",
             "successRate": 0.812,
-            "aslScore": 7.399,
+            "aslScore": 7.4,
             "rankChange": "-6",
             "drop": "8.73",
             "model_id": "gpt-5-mini",
@@ -259,7 +259,7 @@
             "organization": "DeepSeek",
             "link": "https://huggingface.co/deepseek-ai/DeepSeek-V3.1",
             "successRate": 0.778,
-            "aslScore": 7.116,
+            "aslScore": 7.115,
             "rankChange": "-4",
             "drop": "6.88",
             "model_id": "deepseek-v3.1",
@@ -571,7 +571,7 @@
             "organization": "DeepSeek",
             "link": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528",
             "successRate": 0.765,
-            "aslScore": 6.363,
+            "aslScore": 6.364,
             "rankChange": "-18",
             "drop": "16.669999999999998",
             "model_id": "deepseek-r1-0528",
@@ -847,7 +847,7 @@
             "organization": "Zhipu",
             "link": "https://huggingface.co/zai-org/GLM-4.6",
             "successRate": 0.714,
-            "aslScore": 5.642,
+            "aslScore": 5.641,
             "rankChange": "-16",
             "drop": "16.14",
             "model_id": "glm-4.6",
